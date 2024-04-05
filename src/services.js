@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const backendUrl = "https://interview-test.ru/api";
-
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const createPost = async (postData) => {
   try {
-    const response = await axios.post(`${backendUrl}/posts`, postData);
+    const response = await axios.post(`${backendUrl}/api/posts`, postData);
 
     return response.data;
   } catch (error) {
