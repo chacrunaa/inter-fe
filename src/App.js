@@ -1,6 +1,7 @@
 import "./App.css";
 import { Field, Formik, Form } from "formik";
 import { createPost } from "./services";
+import { authService } from "./auth.service";
 
 function App() {
   const onSubmitPost = async (values) => {
@@ -14,7 +15,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <input type="button" value="войти" />
+          <input
+            onClick={() => authService.authorizateUser()}
+            type="button"
+            value="войти"
+          />
           <input type="button" value="регистрация" />
         </div>
       </header>
