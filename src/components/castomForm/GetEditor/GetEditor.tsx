@@ -1,18 +1,25 @@
-import  { lazy } from 'react'
+import { FC, lazy, LazyExoticComponent } from 'react';
+import { FieldValues } from 'react-hook-form';
 
-const ControllerEditor = {
-    text: lazy(()=> import ('@components/castomForm/GetEditor/Editors/Text')),
-    password: lazy(()=> import ('@components/castomForm/GetEditor/Editors/Password')),
-}
+import { ControlledItemProps, TypeForm } from './type';
 
-const GetEditor = ({input}) => {
+const controllerEditor: Record<
+  TypeForm,
+  LazyExoticComponent<
+    FC<ControlledItemProps<FieldValues> & { ref?: React.Ref<HTMLElement> }>
+  >
+> = {
+  text: lazy(() => import('@components/castomForm/GetEditor/Editors/Text')),
+  password: lazy(() => import('@components/castomForm/GetEditor/Editors/Password')),
+};
 
-const Component = ControllerEditor[input?.type] || controlledComponents.text;
+const GetEditor = <FormType extends FieldValues>(
+  props: ControlledItemProps<FormType>,
+) => {
+  const { item } = props;
+  const Component = controllerEditor[item.type] || controllerEditor.text;
 
+  return Component && <Component {...(props as ControlledItemProps<FieldValues>)} />;
+};
 
-  return (
-    Component && <Component {...input}/>
-  )
-}
-
-export default GetEditor
+export default GetEditor;

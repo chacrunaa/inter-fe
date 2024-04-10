@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'path';
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
@@ -8,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@src': resolve(__dirname, './src'),
       '@assets': resolve(__dirname, './src/assets'),
       '@components': resolve(__dirname, './src/components'),
       '@constatns': resolve(__dirname, './src/constatns'),
@@ -16,6 +15,7 @@ export default defineConfig({
       '@stores': resolve(__dirname, './src/stores'),
       '@hooks': resolve(__dirname, './src/hooks'),
       '@network': resolve(__dirname, './src/network'),
+      '@utils': resolve(__dirname, './src/utils'),
     },
   },
 })

@@ -1,11 +1,13 @@
-import { createContext } from "react";
+import createFastContext from '@utils/createFastContext';
 
-const formContext = createContext({
-    formName:'',
-    setInitialState: ()=>{}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {};
+
+const formContext = createFastContext({
+  formName: '',
+  setInitialState: noop,
 });
 
-
 export const useFormStore = () => {
-    return formContext
-}
+  return formContext;
+};

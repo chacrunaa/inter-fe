@@ -1,6 +1,6 @@
 import Container from '@components/Container';
-import Menu from '@components/Menu';
 import Logout from '@components/Logout';
+import Menu from '@components/Menu';
 
 const Header = () => {
   return (

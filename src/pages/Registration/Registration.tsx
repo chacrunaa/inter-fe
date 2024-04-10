@@ -1,45 +1,67 @@
-import Container from '@components/Container'
-import { LOGIN_PATH } from '@constatns/pathPage'
-import { FormGroup, Form, FormLabel, FormControl, Button} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import CastomForm from '@components/castomForm';
+import Container from '@components/Container';
+import { LOGIN_PATH } from '@constatns/pathPage';
+import { postItem } from '@network/api/api';
+import { useAuthStore } from '@stores/useGlobalStore';
+import { useMutation } from '@tanstack/react-query';
+
+import { inputsDefs } from './confDefs/confDefs';
+
 import style from './style.module.scss';
 
 const Registration = () => {
-    const handleSubmit = (event: {
-        currentTarget: any;
-        preventDefault: () => void;
-        stopPropagation: () => void;
-      }) => {
-        event.preventDefault();
-        event.stopPropagation();
-        console.log(event);
-        
-      };
-  return (
-        <div className={style.authenticationWrap}>
-    <Container>
-        <Link to={LOGIN_PATH}>Автризация</Link>
-        <div className={style.authenticationForm}>
-            <h1 className={style.authenticationFormTitle}>Регистрация</h1>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup className="mb-3">
-                <FormLabel>Email</FormLabel>
-                <FormControl placeholder="Введите Email" />
-                </FormGroup>
-                <FormGroup className="mb-3">
-                <FormLabel>Логин</FormLabel>
-                <FormControl placeholder="Введите Логин" />
-                </FormGroup>
-                <FormGroup className="mb-3">
-                <FormLabel>Пароль</FormLabel>
-                <FormControl type="password" placeholder="Введите пароль" />
-                </FormGroup>
-                <Button type="submit">Зарегистрироваться</Button>
-            </Form>
-        </div>
-    </Container>
-        </div>
-  )
-}
+  const object = 'auth/registration';
 
-export default Registration
+  const navigate = useNavigate();
+
+  const setToken = useAuthStore(s => s.setToken);
+  const token = useAuthStore(s => s.token);
+
+  const registrationMutation = useMutation({
+    mutationFn: formData => postItem(object, formData),
+    onSuccess(data) {
+      if (!!data?.token) {
+        setToken(data.token);
+        navigate('/');
+      } else {
+        setToken('');
+      }
+    },
+  });
+
+  const handleSubmit = (formData: any) => {
+    registrationMutation.mutate(formData);
+  };
+
+  useEffect(() => {
+    if (!!token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+
+  if (!!token) {
+    return null;
+  }
+
+  return (
+    <div className={style.authenticationWrap}>
+      <Container>
+        <Link to={LOGIN_PATH}>Автризация</Link>
+        <CastomForm>
+          <CastomForm.Form onSubmitForm={handleSubmit}>
+            <h1 className={style.authenticationFormTitle}>Регистрация</h1>
+            <CastomForm.Items items={inputsDefs} />
+            <Button type="submit" disabled={registrationMutation.isPending}>
+              Зарегистрироваться
+            </Button>
+          </CastomForm.Form>
+        </CastomForm>
+      </Container>
+    </div>
+  );
+};
+
+export default Registration;

@@ -1,10 +1,12 @@
-import { useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { Form } from 'react-bootstrap';
 import { FieldValues, useFormContext } from 'react-hook-form';
 
+import { useFormStore } from '../hook/useForm/useFormStore';
+
 type IProps = {
   children: ReactNode;
-  onSubmitForm?: (data: FormType) => void;
+  onSubmitForm?: (data: any) => void;
 };
 
 const CastomContent = <FormType extends FieldValues>({
@@ -13,13 +15,11 @@ const CastomContent = <FormType extends FieldValues>({
 }: IProps) => {
   const { handleSubmit } = useFormContext<FormType>();
 
-  const handleSubmitBefore = (onValid, onInvalid) => {
-    return handleSubmit(onValid, onInvalid)();
-  };
+  const { useStore } = useFormStore();
+  const [formName] = useStore(s => s.formName);
 
   const onValid = useCallback(
     (data: FormType) => {
-      console.log(data);
       onSubmitForm?.(data);
     },
     [onSubmitForm],
@@ -32,9 +32,10 @@ const CastomContent = <FormType extends FieldValues>({
     <Form
       data-testid="form"
       noValidate
+      id={formName}
       onSubmit={event => {
         event.preventDefault();
-        handleSubmitBefore(onValid, onInvalid);
+        handleSubmit(onValid, onInvalid)();
       }}
     >
       {children}

@@ -27,7 +27,7 @@
     /* Alias */
     "baseUrl": ".",
     "paths": {
-      "@src/*":["src/*"],
+      "@/*":["src/*"],
       "@assets/*":["src/assets/*"],
       "@components/*":["src/components/*"],
       "@constatns/*":["src/constatns/*"],
@@ -35,6 +35,7 @@
       "@stores/*":["src/stores/*"],
       "@hooks/*":["src/hooks/*"],
       "@network/*":["src/network/*"],
+      "@utils/*":["src/utils/*"],
     },
   },
   "include": ["src"],

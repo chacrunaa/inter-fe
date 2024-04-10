@@ -1,1 +1,1 @@
-export type axiosUrlsTypes = 'auth/login';
+export type axiosUrlsTypes = 'auth/login' | 'auth/registration';

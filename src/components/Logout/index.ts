@@ -1,2 +1,2 @@
-import Logout from './Logout'
-export default Logout
+import Logout from './Logout';
+export default Logout;

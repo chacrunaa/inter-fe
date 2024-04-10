@@ -5,18 +5,12 @@ import CastomContent from './CastomContent/CastomContent';
 import CastomFormItems from './CastomFormItems/CastomFormItems';
 
 type IForm = {
-  formName: string;
   children: React.ReactElement;
   defaultValues?: any;
   mode?: 'onBlur' | 'onChange' | 'onSubmit' | 'onTouched' | 'all';
 };
 
-const CastomForm = ({
-  formName,
-  mode = 'onTouched',
-  children,
-  defaultValues = {},
-}: IForm) => {
+const CastomForm = ({ mode = 'onTouched', children, defaultValues = {} }: IForm) => {
   const methods = useForm({
     defaultValues: defaultValues,
     mode: mode,
@@ -24,8 +18,9 @@ const CastomForm = ({
   });
 
   const { Provider } = useFormStore();
+
   return (
-    <Provider value={{ formName }}>
+    <Provider>
       <FormProvider {...methods}>{children}</FormProvider>
     </Provider>
   );
