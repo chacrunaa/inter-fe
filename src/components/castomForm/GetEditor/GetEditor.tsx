@@ -11,6 +11,7 @@ const controllerEditor: Record<
 > = {
   text: lazy(() => import('@components/castomForm/GetEditor/Editors/Text')),
   password: lazy(() => import('@components/castomForm/GetEditor/Editors/Password')),
+  select: lazy(() => import('@components/castomForm/GetEditor/Editors/Select')),
 };
 
 const GetEditor = <FormType extends FieldValues>(

@@ -16,6 +16,7 @@ const Text = <FormType extends FieldValues>({ item }: ControlledItemProps<FormTy
         type="text"
         title={value}
         autoComplete={'off'}
+        required={item.required}
         placeholder={item.header}
       />
     </FloatingLabel>

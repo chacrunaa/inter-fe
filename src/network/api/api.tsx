@@ -9,6 +9,7 @@ export const getList = async (url: axiosUrlsTypes, params?: any) => {
 export const postItem = async (url: axiosUrlsTypes, params?: any) => {
   return request.post(`/${url}`, params);
 };
+
 export const postAuth = async (url: axiosUrlsTypes, params?: any) => {
   return request.post(`/${url}`, params);
 };

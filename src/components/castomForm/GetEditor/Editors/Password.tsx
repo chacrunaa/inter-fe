@@ -16,6 +16,7 @@ const Password = <FormType extends FieldValues>({
         ref={formRef}
         {...rest}
         title={value}
+        required={item.required}
         type="password"
         autoComplete={'off'}
         placeholder={item.header}
