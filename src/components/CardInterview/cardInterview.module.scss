@@ -1,0 +1,11 @@
+.wrapperList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 0;
+}
+
+.moreDetailsButton {
+    margin-left: 100%;
+    transform: translate(-100%);
+}
