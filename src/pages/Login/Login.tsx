@@ -5,6 +5,7 @@ import CastomForm from '@components/castomForm';
 import Container from '@components/Container';
 import { REGISTRATION_PATH } from '@constatns/pathPage';
 import { postAuth } from '@network/api/api';
+import { AllEntityesParamsDto } from '@network/types';
 import { useAuthStore } from '@stores/useGlobalStore';
 import { useMutation } from '@tanstack/react-query';
 
@@ -21,7 +22,8 @@ const Login = () => {
   const token = useAuthStore(s => s.token);
 
   const authMutation = useMutation({
-    mutationFn: formData => postAuth(object, formData),
+    mutationFn: (formData: AllEntityesParamsDto['auth/login']) =>
+      postAuth(object, formData),
     onSuccess(data) {
       if (!!data?.token) {
         setToken(data.token);

@@ -199,6 +199,30 @@ export interface components {
        */
       prefix: string;
     };
+    InterviewsPaginationDto: {
+      /**
+       * @description Общее количество статей
+       * @example 100
+       */
+      total: number;
+      /**
+       * @description Общее количество страниц
+       * @example 10
+       */
+      totalPages: number;
+      /**
+       * @description Текущая страница
+       * @example 1
+       */
+      currentPage: number;
+      /**
+       * @description Количество статей на странице
+       * @example 10
+       */
+      pageSize: number;
+      /** @description Список статей */
+      interviews: components["schemas"]["Interview"][];
+    };
   };
   responses: never;
   parameters: never;
@@ -351,7 +375,7 @@ export interface operations {
       /** @description Получить и отфильтровать список */
       200: {
         content: {
-          "application/json": components["schemas"]["Interview"][];
+          "application/json": components["schemas"]["InterviewsPaginationDto"];
         };
       };
     };
