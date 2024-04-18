@@ -23,11 +23,11 @@ class MyAxios {
     return this.axiosInstance.get(url, data);
   }
 
-  post<T = any>(url: string, data?: object): Promise<T> {
+  post<T = AxiosResponse>(url: string, data?: object): Promise<T> {
     return this.axiosInstance.post(url, data);
   }
 
-  delete<T = any>(url: string, data?: object): Promise<T> {
+  delete<T = AxiosResponse>(url: string, data?: object): Promise<T> {
     return this.axiosInstance.delete(url, data);
   }
 }
