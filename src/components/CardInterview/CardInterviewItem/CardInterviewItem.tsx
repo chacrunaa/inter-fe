@@ -19,6 +19,7 @@ const CardInterviewItem = (props: InterviewAllItem) => {
         articleDescription,
         createdAt,
         updatedAt,
+        prefix,
     } = props;
 
     const offerDisplay = formatOffer(minoffer, maxoffer);
@@ -28,17 +29,17 @@ const CardInterviewItem = (props: InterviewAllItem) => {
     return (
         <Card className="h-100">
             <Card.Header>
-                <Row>
-                    <Col xs={7}>
+                <Row className={style.headerCard}>
+                    <Col xs={2} sm={2} md={2}>
                         <Card.Title>{companyName}</Card.Title>
                     </Col>
-                    <Col xs={2}>
+                    <Col xs={7} sm={6} md={7}>
                         <div>{formattedDateUpdate ?? formattedDateCreate}</div>
                     </Col>
-                    <Col xs={2} className="text-end">
-                        <div>{offerDisplay}</div>
+                    <Col xs={2} sm={3} md={2} className="text-end">
+                        <div>{offerDisplay ?? prefix}</div>
                     </Col>
-                    <Col xs={1}>
+                    <Col xs={1} sm={1} md={1}>
                         <div className="badge bg-success">{status}</div>
                     </Col>
                 </Row>
@@ -50,12 +51,12 @@ const CardInterviewItem = (props: InterviewAllItem) => {
                         <Card.Text className="mb-0">{grade}</Card.Text>
                         <Card.Text className="mb-2">{stage}</Card.Text>
                     </Col>
-                    <Col md={8}>
+                    <Col md={6}>
                         <Card.Title>{articleTitle}</Card.Title>
                         <Card.Text>{articleDescription}</Card.Text>
-                        <Button variant="primary" className={style.moreDetailsButton}>
-                            Подробнее
-                        </Button>
+                    </Col>
+                    <Col md={{ span: 10, offset: 2 }} className="d-flex justify-content-end">
+                        <Button variant="primary">Подробнее</Button>
                     </Col>
                 </Row>
             </Card.Body>
