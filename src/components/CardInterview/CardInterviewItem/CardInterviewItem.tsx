@@ -2,6 +2,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 import { InterviewItemProps } from '../CardInterviewList/CardInterviewList';
+import { formatOffer, formattedDate } from '../utils';
 
 import style from '../cardInterview.module.scss';
 
@@ -16,22 +17,26 @@ const CardInterviewItem = (props: InterviewItemProps) => {
         stage,
         articleTitle,
         articleDescription,
+        createdAt,
+        updatedAt,
     } = props;
-    const offerRange = minoffer && `${minoffer.toLocaleString()} - `;
-    const maxOfferFormatted = maxoffer.toLocaleString();
+
+    const offerDisplay = formatOffer(minoffer, maxoffer);
+    const formattedDateCreate = formattedDate(createdAt);
+    const formattedDateUpdate = formattedDate(updatedAt);
 
     return (
         <Card className="h-100">
             <Card.Header>
                 <Row>
-                    <Col xs={9}>
+                    <Col xs={7}>
                         <Card.Title>{companyName}</Card.Title>
                     </Col>
+                    <Col xs={2}>
+                        <div>{formattedDateUpdate ?? formattedDateCreate}</div>
+                    </Col>
                     <Col xs={2} className="text-end">
-                        <div>
-                            {offerRange}
-                            {maxOfferFormatted}
-                        </div>
+                        <div>{offerDisplay}</div>
                     </Col>
                     <Col xs={1}>
                         <div className="badge bg-success">{status}</div>
