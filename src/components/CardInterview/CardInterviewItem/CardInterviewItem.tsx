@@ -1,10 +1,10 @@
 import { Button, Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import { InterviewItem } from '@network/models/models';
+import { InterviewAllItem } from '@network/models/interviews.model';
 
 import style from '../cardInterview.module.scss';
 
-const CardInterviewItem = (props: InterviewItem) => {
+const CardInterviewItem = (props: InterviewAllItem) => {
   const {
     minoffer,
     maxoffer,

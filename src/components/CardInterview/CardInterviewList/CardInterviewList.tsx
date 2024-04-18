@@ -1,11 +1,11 @@
-import { InterviewsDto } from '@network/models/models';
+import { InterviewAllItem } from '@network/models/interviews.model';
 
 import CardInterviewItem from '../CardInterviewItem/CardInterviewItem';
 
 import style from '../cardInterview.module.scss';
 
 export type CardProps = {
-  data?: InterviewsDto['interviews'];
+  data?: InterviewAllItem[];
 };
 
 const CardInterviewList = ({ data }: CardProps) => {

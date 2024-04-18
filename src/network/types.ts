@@ -1,14 +1,22 @@
-import { operations } from '../types/generated-api';
-import { schemas } from './models/models';
+import { components } from '../types/generated-api';
+import { InterviewsParams, InterviewsResponseData } from './models/interviews.model';
+import {
+  AuthParams,
+  AuthResponseData,
+  RegistrationParams,
+  RegistrationResponseData,
+} from './models/user.model';
+
+export type schemas = components['schemas'];
 
 export type AllEntityesParamsDto = {
-  'interviews': operations['InterviewsController_findAll']['parameters']['query'];
-  'auth/login': schemas['CreateUserDto'];
-  'auth/registration': schemas['CreateUserDto'];
+  'interviews': InterviewsParams;
+  'auth/login': AuthParams;
+  'auth/registration': RegistrationParams;
 };
 
 export type AllEntityesResponseDto = {
-  'interviews': schemas['InterviewsPaginationDto'];
-  'auth/login': schemas['User'];
-  'auth/registration': schemas['User'];
+  'interviews': InterviewsResponseData;
+  'auth/login': AuthResponseData;
+  'auth/registration': RegistrationResponseData;
 };
