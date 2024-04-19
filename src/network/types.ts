@@ -11,12 +11,12 @@ export type schemas = components['schemas'];
 
 export type AllEntityesParamsDto = {
   'interviews': InterviewsParams;
-  'auth/login': AuthParams;
-  'auth/registration': RegistrationParams;
+  'auth/login': AuthParams | any;
+  'auth/registration': RegistrationParams | any;
 };
 
 export type AllEntityesResponseDto = {
   'interviews': InterviewsResponseData;
-  'auth/login': AuthResponseData;
-  'auth/registration': RegistrationResponseData;
+  'auth/login': AuthResponseData | any;
+  'auth/registration': RegistrationResponseData | any;
 };
