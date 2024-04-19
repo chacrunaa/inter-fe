@@ -1,12 +1,12 @@
 import Container from '@components/Container';
 import Logout from '@components/Logout';
-import Menu from '@components/Menu';
+
+import style from './styel.module.scss';
 
 const Header = () => {
   return (
-    <Container>
+    <Container customClass={style.headerWrap}>
       Header
-      <Menu />
       <Logout />
     </Container>
   );

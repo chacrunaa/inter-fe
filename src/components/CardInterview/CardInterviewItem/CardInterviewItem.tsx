@@ -16,8 +16,8 @@ const CardInterviewItem = (props: InterviewAllItem) => {
     articleTitle,
     articleDescription,
   } = props;
-  const offerRange = minoffer && `${minoffer.toLocaleString()} - `;
-  const maxOfferFormatted = maxoffer.toLocaleString();
+  const offerRange = minoffer && `${minoffer?.toLocaleString()} - `;
+  const maxOfferFormatted = maxoffer?.toLocaleString();
 
   return (
     <Card className="h-100">

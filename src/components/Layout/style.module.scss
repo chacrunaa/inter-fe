@@ -1,0 +1,10 @@
+.bodyWrap {
+    position: absolute;
+    margin-left: 320px;
+    height: 100%;
+    width: -webkit-fill-available;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-rows: 150px 1fr 250px;
+}

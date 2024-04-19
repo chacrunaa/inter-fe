@@ -8,10 +8,7 @@ import CardInterviewList from './CardInterviewList/CardInterviewList';
 const CardInterview = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['interviews'],
-    queryFn: () =>
-      getList('interviews', {
-        pageSize: 1,
-      }),
+    queryFn: () => getList('interviews'),
   });
 
   const interviews = data?.interviews;

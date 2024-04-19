@@ -3,11 +3,11 @@ import { MenuDataType } from '../type';
 
 const MenuList = ({ items }: { items: MenuDataType[] }) => {
   return (
-    <ul>
+    <div>
       {items.map((item, i) => (
         <MenuItem key={i} item={item} />
       ))}
-    </ul>
+    </div>
   );
 };
 
