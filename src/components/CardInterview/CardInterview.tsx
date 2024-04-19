@@ -17,7 +17,7 @@ const CardInterview = () => {
     return (
         <QueryWrapper isLoading={isLoading} error={isError}>
             <CardInterviewList data={interviews} />
-            <Pagination>{totalPages} Хуев во рту</Pagination>
+            <Pagination>{totalPages}</Pagination>
         </QueryWrapper>
     );
 };
