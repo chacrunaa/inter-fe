@@ -3,43 +3,42 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/users": {
+  '/users': {
     /** Получить всех пользователей */
-    get: operations["UsersController_getAll"];
+    get: operations['UsersController_getAll'];
     /** Создание пользователя */
-    post: operations["UsersController_create"];
+    post: operations['UsersController_create'];
   };
-  "/users/role": {
+  '/users/role': {
     /** Выдать роль */
-    post: operations["UsersController_addRole"];
+    post: operations['UsersController_addRole'];
   };
-  "/users/ban": {
+  '/users/ban': {
     /** Забанить пользователя */
-    post: operations["UsersController_ban"];
+    post: operations['UsersController_ban'];
   };
-  "/roles": {
-    post: operations["RolesController_create"];
+  '/roles': {
+    post: operations['RolesController_create'];
   };
-  "/roles/{value}": {
-    get: operations["RolesController_getByValue"];
+  '/roles/{value}': {
+    get: operations['RolesController_getByValue'];
   };
-  "/auth/login": {
-    post: operations["AuthController_login"];
+  '/auth/login': {
+    post: operations['AuthController_login'];
   };
-  "/auth/registration": {
-    post: operations["AuthController_registration"];
+  '/auth/registration': {
+    post: operations['AuthController_registration'];
   };
-  "/api/posts": {
-    get: operations["PostsController_getAllPosts"];
-    post: operations["PostsController_createPost"];
+  '/api/posts': {
+    get: operations['PostsController_getAllPosts'];
+    post: operations['PostsController_createPost'];
   };
-  "/interviews": {
+  '/interviews': {
     /** Получение и фильтрация статей */
-    get: operations["InterviewsController_findAll"];
+    get: operations['InterviewsController_findAll'];
     /** Создание новой статьи с описанием собеса */
-    post: operations["InterviewsController_create"];
+    post: operations['InterviewsController_create'];
   };
 }
 
@@ -198,6 +197,16 @@ export interface components {
        * @example от
        */
       prefix: string;
+      /**
+       * @description Дата создания карточки собеседования
+       * @example 2024-04-09T18:08:12.434Z
+       */
+      createdAt: string;
+      /**
+       * @description Дата обновления карточки собеседования
+       * @example 2024-04-09T18:08:12.434Z
+       */
+      updatedAt: string;
     };
     InterviewsPaginationDto: {
       /**
@@ -221,7 +230,7 @@ export interface components {
        */
       pageSize: number;
       /** @description Список статей */
-      interviews: components["schemas"]["Interview"][];
+      interviews: components['schemas']['Interview'][];
     };
   };
   responses: never;
@@ -235,14 +244,13 @@ export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export interface operations {
-
+export type operations = {
   /** Получить всех пользователей */
   UsersController_getAll: {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"][];
+          'application/json': components['schemas']['User'][];
         };
       };
     };
@@ -251,13 +259,13 @@ export interface operations {
   UsersController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"];
+          'application/json': components['schemas']['User'];
         };
       };
     };
@@ -266,7 +274,7 @@ export interface operations {
   UsersController_addRole: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["AddRoleDto"];
+        'application/json': components['schemas']['AddRoleDto'];
       };
     };
     responses: {
@@ -279,7 +287,7 @@ export interface operations {
   UsersController_ban: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["BanUserDto"];
+        'application/json': components['schemas']['BanUserDto'];
       };
     };
     responses: {
@@ -291,7 +299,7 @@ export interface operations {
   RolesController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateRoleDto"];
+        'application/json': components['schemas']['CreateRoleDto'];
       };
     };
     responses: {
@@ -315,7 +323,7 @@ export interface operations {
   AuthController_login: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
@@ -327,7 +335,7 @@ export interface operations {
   AuthController_registration: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
@@ -346,7 +354,7 @@ export interface operations {
   PostsController_createPost: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreatePostDto"];
+        'application/json': components['schemas']['CreatePostDto'];
       };
     };
     responses: {
@@ -375,7 +383,7 @@ export interface operations {
       /** @description Получить и отфильтровать список */
       200: {
         content: {
-          "application/json": components["schemas"]["InterviewsPaginationDto"];
+          'application/json': components['schemas']['InterviewsPaginationDto'];
         };
       };
     };
@@ -389,16 +397,16 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateInterviewDto"];
+        'application/json': components['schemas']['CreateInterviewDto'];
       };
     };
     responses: {
       /** @description Статья создана */
       200: {
         content: {
-          "application/json": components["schemas"]["Interview"];
+          'application/json': components['schemas']['Interview'];
         };
       };
     };
   };
-}
+};
