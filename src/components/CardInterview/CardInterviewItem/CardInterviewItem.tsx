@@ -2,7 +2,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { InterviewAllItem } from '@network/models/interviews.model';
 
-import { formatOffer, formattedDate } from '../utils';
+import { formatOffer, getFormattedDateText } from '../utils';
 
 import style from '../cardInterview.module.scss';
 
@@ -22,9 +22,8 @@ const CardInterviewItem = (props: InterviewAllItem) => {
         prefix,
     } = props;
 
-    const offerDisplay = formatOffer(minoffer, maxoffer);
-    const formattedDateCreate = formattedDate(createdAt);
-    const formattedDateUpdate = formattedDate(updatedAt);
+    const offerDisplay = formatOffer(prefix, minoffer, maxoffer);
+    const dateText = getFormattedDateText(createdAt, updatedAt);
 
     return (
         <Card className="h-100">
@@ -34,10 +33,10 @@ const CardInterviewItem = (props: InterviewAllItem) => {
                         <Card.Title>{companyName}</Card.Title>
                     </Col>
                     <Col xs={7} sm={6} md={7}>
-                        <div>{formattedDateUpdate ?? formattedDateCreate}</div>
+                        <div>{dateText}</div>
                     </Col>
                     <Col xs={2} sm={3} md={2} className="text-end">
-                        <div>{offerDisplay ?? prefix}</div>
+                        <div>{offerDisplay}</div>
                     </Col>
                     <Col xs={1} sm={1} md={1}>
                         <div className="badge bg-success">{status}</div>
