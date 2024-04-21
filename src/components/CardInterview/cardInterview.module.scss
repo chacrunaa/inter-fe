@@ -6,6 +6,11 @@
 }
 
 .moreDetailsButton {
-    margin-left: 100%;
-    transform: translate(-100%);
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.headerCard {
+    align-items: baseline;
 }
