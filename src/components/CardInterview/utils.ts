@@ -6,7 +6,7 @@ export const formatOffer = (
   if (minOffer && maxOffer) {
     return `${minOffer.toLocaleString()} - ${maxOffer.toLocaleString()} ₽`;
   } else if (minOffer) {
-    return `${minOffer.toLocaleString()} ₽`;
+    return `${prefix} ${minOffer.toLocaleString()} ₽`;
   } else if (maxOffer) {
     return `${prefix} ${maxOffer.toLocaleString()} ₽`;
   } else {
