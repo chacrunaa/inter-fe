@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  front:
+    container_name: front
+    build:
+      context: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 5173:5173
+    command: yarn dev
+    restart: always
