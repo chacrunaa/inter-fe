@@ -8,7 +8,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-RUN yarn build
+RUN yarn
 
 EXPOSE 5137
 
