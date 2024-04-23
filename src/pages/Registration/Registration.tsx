@@ -25,8 +25,8 @@ const Registration = () => {
     mutationFn: (formData: AllEntityesParamsDto['auth/registration']) =>
       postItem(object, formData),
     onSuccess(data) {
-      if (!!data.data?.token) {
-        setToken(data?.data?.token);
+      if (!!data?.token) {
+        setToken(data?.token);
         navigate('/');
       } else {
         setToken('');
