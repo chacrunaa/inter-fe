@@ -15,7 +15,7 @@ class MyAxios {
       if (data instanceof Blob) {
         return response;
       }
-      return data;
+      return data?.data;
     });
   }
 
