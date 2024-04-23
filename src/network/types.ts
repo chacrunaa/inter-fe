@@ -1,5 +1,5 @@
 import { components } from '../types/generated-api';
-import { InterviewsParams, InterviewsResponseData } from './models/interviews.model';
+import { GetInterviewsResponseData, InterviewsParams } from './models/interviews.model';
 import {
   AuthParams,
   AuthResponseData,
@@ -16,7 +16,7 @@ export type AllEntityesParamsDto = {
 };
 
 export type AllEntityesResponseDto = {
-  'interviews': InterviewsResponseData;
+  'interviews': GetInterviewsResponseData;
   'auth/login': AuthResponseData | any;
   'auth/registration': RegistrationResponseData | any;
 };
