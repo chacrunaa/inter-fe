@@ -1,11 +1,9 @@
 import { FloatingLabel, Form } from 'react-bootstrap';
 import { FieldValues, useFormContext } from 'react-hook-form';
 
-import { ControlledItemProps } from '../type';
+import { ControlledItemProps } from '../../type';
 
-const Password = <FormType extends FieldValues>({
-  item,
-}: ControlledItemProps<FormType>) => {
+const Text = <FormType extends FieldValues>({ item }: ControlledItemProps<FormType>) => {
   const { register, getValues } = useFormContext<FormType>();
 
   const { ref: formRef, ...rest } = register(item.id);
@@ -15,14 +13,14 @@ const Password = <FormType extends FieldValues>({
       <Form.Control
         ref={formRef}
         {...rest}
+        type="text"
         title={value}
-        required={item.required}
-        type="password"
         autoComplete={'off'}
+        required={item.required}
         placeholder={item.header}
       />
     </FloatingLabel>
   );
 };
 
-export default Password;
+export default Text;

@@ -10,7 +10,7 @@ import {
 import ReactSelect from 'react-select';
 import { deepEqual } from '@utils/utils';
 
-import { ControlledItemProps } from '../type';
+import { ControlledItemProps } from '../../type';
 
 const Select = <FormType extends FieldValues>({
   item,
