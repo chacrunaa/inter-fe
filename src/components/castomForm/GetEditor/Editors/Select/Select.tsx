@@ -1,55 +1,83 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { isArray } from 'lodash';
+import { useState } from 'react';
+import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 import {
-  Controller,
-  ControllerRenderProps,
-  FieldValues,
-  Path,
-  useFormContext,
-} from 'react-hook-form';
-import ReactSelect from 'react-select';
-import { deepEqual } from '@utils/utils';
+  Box,
+  Chip,
+  FilledInput,
+  FormControl,
+  Input,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select as MuiSelect,
+  SelectVariants,
+} from '@mui/material';
 
 import { ControlledItemProps } from '../../type';
+
+const variantInput = (variant?: SelectVariants) => {
+  switch (variant) {
+    case 'outlined':
+      return <OutlinedInput />;
+    case 'standard':
+      return <Input />;
+    case 'filled':
+      return <FilledInput />;
+
+    default:
+      return <FilledInput />;
+  }
+};
 
 const Select = <FormType extends FieldValues>({
   item,
 }: ControlledItemProps<FormType>) => {
-  const [options, setOptions] = useState(item.options);
-  const { register, control } = useFormContext<FormType>();
-
-  useEffect(() => {
-    if (isArray(item.options) && !deepEqual(item.options, options)) {
-      setOptions(item.options);
-    }
-  }, [item.options, options]);
-
-  const { ref: formRef } = register(item.id);
-
-  const optionsMemo = useMemo(() => options || [], [options]);
-
-  const handlerRender = useCallback(
-    ({ field }: { field: ControllerRenderProps<FormType, Path<FormType>> }) => (
-      <ReactSelect
-        {...field}
-        ref={formRef}
-        required={item.required}
-        isMulti={item?.isMulti}
-        className={'mb-3'}
-        options={optionsMemo}
-        placeholder={item.header}
-      ></ReactSelect>
-    ),
-    [formRef, item.header, item?.isMulti, item.required, optionsMemo],
-  );
-
+  const [options] = useState(item?.options);
+  const { control } = useFormContext<FormType>();
   return (
-    <Controller
-      name={item.id}
-      control={control}
-      defaultValue={item?.value}
-      render={handlerRender}
-    />
+    <FormControl required={item.required} variant={item?.variant || 'filled'}>
+      <InputLabel variant={item?.variant || 'filled'} id={item.id}>
+        {item.header}
+      </InputLabel>
+      <Controller
+        name={item.id}
+        control={control}
+        render={({ field }) => {
+          return (
+            <MuiSelect
+              {...field}
+              labelId={item.id}
+              multiple={item.isMulti}
+              value={field.value || []}
+              onChange={event => {
+                const {
+                  target: { value },
+                } = event;
+                field.onChange(typeof value === 'string' ? value?.split(',') : value);
+              }}
+              input={variantInput(item?.variant)}
+              renderValue={selected => (
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  {selected?.map((value: string) => {
+                    const label =
+                      options?.find(option => option.value === value)?.label || value;
+                    return <Chip key={value} label={label} variant="outlined" />;
+                  })}
+                </Box>
+              )}
+            >
+              {options?.map(name => {
+                return (
+                  <MenuItem key={name.value} value={name.value}>
+                    {name.label}
+                  </MenuItem>
+                );
+              })}
+            </MuiSelect>
+          );
+        }}
+      ></Controller>
+    </FormControl>
   );
 };
 

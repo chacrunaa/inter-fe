@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import { useAuthStore } from '@stores/useGlobalStore';
 
 const Logout = () => {
@@ -7,7 +7,7 @@ const Logout = () => {
     setToken('');
   };
   return (
-    <Button className="btn btn-warning" onClick={hundleLoguot}>
+    <Button variant="contained" onClick={hundleLoguot}>
       Выйти
     </Button>
   );

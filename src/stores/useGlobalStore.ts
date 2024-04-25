@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { InterviewsParams } from '@network/models/interviews.model';
+import { cleanedObject } from '@utils/utils';
 
 type StoreAuth = {
   token: string;
@@ -21,13 +22,13 @@ export const useAuthStore = create<StoreAuth & ActionsAuth>()(
 type StoreInterwiev = {
   currentPage: number;
   pageSize: number;
-  fitler?: InterviewsParams;
+  filter?: InterviewsParams | object;
 };
 
 type ActionsInterwiev = {
   setCurrentPage: (currentPage: number) => void;
   setPageSize: (pageSize: number) => void;
-  setFilter: (fitler: InterviewsParams) => void;
+  setFilter: (filter: InterviewsParams) => void;
 };
 
 export const useIterwievStore = create<StoreInterwiev & ActionsInterwiev>()(
@@ -37,8 +38,8 @@ export const useIterwievStore = create<StoreInterwiev & ActionsInterwiev>()(
       currentPage: 1,
       pageSize: 5,
       setCurrentPage: currentPage => set(() => ({ currentPage: currentPage })),
-      setPageSize: pageSize => set(() => ({ pageSize: pageSize })),
-      setFilter: fitler => set(() => ({ fitler: fitler })),
+      setPageSize: pageSize => set(() => ({ pageSize: pageSize, currentPage: 1 })),
+      setFilter: filter => set(() => ({ filter: cleanedObject(filter), currentPage: 1 })),
     }),
     { name: 'interwiev' },
   ),

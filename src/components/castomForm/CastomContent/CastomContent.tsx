@@ -1,6 +1,5 @@
 import { ReactNode, useCallback } from 'react';
-import { Form } from 'react-bootstrap';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { FieldValues, Form, useFormContext } from 'react-hook-form';
 
 import { useFormStore } from '../hook/useForm/useFormStore';
 
@@ -32,9 +31,8 @@ const CastomContent = <FormType extends FieldValues>({
     <Form
       data-testid="form"
       noValidate
-      id={formName}
-      onSubmit={event => {
-        event.preventDefault();
+      id={formName || 'defaulForm'}
+      onSubmit={() => {
         handleSubmit(onValid, onInvalid)();
       }}
     >

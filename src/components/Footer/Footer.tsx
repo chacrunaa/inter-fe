@@ -1,4 +1,4 @@
-import Container from '@components/Container';
+import { Container } from '@mui/material';
 
 const Footer = () => {
   return <Container>Footer</Container>;

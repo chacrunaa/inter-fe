@@ -1,6 +1,6 @@
-import Container from '@components/Container';
 import Logout from '@components/Logout';
 import Menu from '@components/Menu';
+import { Container } from '@mui/material';
 
 const Header = () => {
   return (
