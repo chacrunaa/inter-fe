@@ -12,7 +12,7 @@ type IForm = {
   mode?: 'onBlur' | 'onChange' | 'onSubmit' | 'onTouched' | 'all';
 };
 
-const CastomForm = ({ mode = 'onTouched', children, defaultValues = {} }: IForm) => {
+const CastomForm = ({ mode = 'onTouched', children, defaultValues }: IForm) => {
   const methods = useForm({
     defaultValues: defaultValues,
     mode: mode,
@@ -23,7 +23,7 @@ const CastomForm = ({ mode = 'onTouched', children, defaultValues = {} }: IForm)
   useEffect(() => {
     reset(defaultValues);
     reset(defaultValues); //bug need fix
-  }, [methods, defaultValues, reset]);
+  }, [defaultValues, methods, reset]);
 
   const { Provider } = useFormStore();
 
