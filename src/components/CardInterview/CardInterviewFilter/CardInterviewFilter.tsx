@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import CastomForm from '@components/castomForm';
 import { Box, Button, Typography } from '@mui/material';
 import { InterviewsParams } from '@network/models/interviews.model';
@@ -7,8 +7,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { filterDefs } from '../confDefs/confDefs';
 
 type Props = {
-  filter: any;
-  setFilter: (filter: any) => void;
+  filter: InterviewsParams;
+  setFilter: (filter: InterviewsParams) => void;
 };
 
 const CardInterviewFilter = ({ filter, setFilter }: Props) => {
@@ -22,15 +22,12 @@ const CardInterviewFilter = ({ filter, setFilter }: Props) => {
 
   const handleClear = useCallback(
     (reset: any) => {
-      setFilter({} as any);
+      setFilter({});
       reset({});
+      queryClient.invalidateQueries({ queryKey: ['interviews'] });
     },
-    [setFilter],
+    [queryClient, setFilter],
   );
-
-  useEffect(() => {
-    setTimeout(() => queryClient.invalidateQueries({ queryKey: ['interviews'] }), 1);
-  }, [queryClient, filter]);
 
   return (
     <CastomForm defaultValues={filter}>
