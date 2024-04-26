@@ -16,7 +16,6 @@ const CastomForm = ({ mode = 'onTouched', children, defaultValues = {} }: IForm)
     mode: mode,
     shouldFocusError: false,
   });
-
   const { Provider } = useFormStore();
 
   return (

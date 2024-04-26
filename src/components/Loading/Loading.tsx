@@ -1,7 +1,7 @@
-import { Spinner } from 'react-bootstrap';
+import { CircularProgress } from '@mui/material';
 
 const Loading = () => {
-  return <Spinner animation="grow" variant="primary" />;
+  return <CircularProgress />;
 };
 
 export default Loading;

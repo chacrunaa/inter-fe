@@ -1,15 +1,24 @@
-import { Button, Col, Row } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+import { useCallback } from 'react';
+import { isArray } from 'lodash';
+import { formatOffer } from '@components/CardInterview/utils/utils';
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Chip,
+  Link,
+  Typography,
+} from '@mui/material';
 import { InterviewAllItem } from '@network/models/interviews.model';
 
-import { formatOffer, getFormattedDateText } from '../utils';
+import { INTERVIEW_GRADE_STATUS_STAGE } from '../constans';
 
-import style from '../cardInterview.module.scss';
+type Props = InterviewAllItem;
 
-const CardInterviewItem = (props: InterviewAllItem) => {
+const CardInterviewItem = (props: Props) => {
   const {
-    minoffer,
-    maxoffer,
     companyName,
     status,
     nickName,
@@ -17,47 +26,108 @@ const CardInterviewItem = (props: InterviewAllItem) => {
     stage,
     articleTitle,
     articleDescription,
-    createdAt,
-    updatedAt,
+    id,
+    maxoffer,
+    minoffer,
     prefix,
   } = props;
 
-  const offerDisplay = formatOffer(prefix, minoffer, maxoffer);
-  const dateText = getFormattedDateText(createdAt, updatedAt);
+  const generateColorChips = useCallback((item: string) => {
+    switch (item) {
+      case 'failure':
+        return 'error';
+      case 'processing':
+        return 'info';
+      case 'successful':
+        return 'success';
+
+      default:
+        return 'default';
+    }
+  }, []);
+
+  const changeTitle = useCallback(
+    (item: keyof typeof INTERVIEW_GRADE_STATUS_STAGE | undefined) =>
+      item ? INTERVIEW_GRADE_STATUS_STAGE[item] : undefined,
+    [],
+  );
+
+  const createChips = useCallback(
+    (arr: string | string[]) => {
+      if (isArray(arr)) {
+        const resilt = arr?.map((item: string) => (
+          <Chip
+            key={item}
+            label={changeTitle(
+              item as keyof typeof INTERVIEW_GRADE_STATUS_STAGE | undefined,
+            )}
+            color={generateColorChips(item)}
+          />
+        ));
+        return resilt;
+      }
+      return null;
+    },
+    [changeTitle, generateColorChips],
+  );
+
   return (
-    <Card className="h-100">
-      <Card.Header>
-        <Row className={style.headerCard}>
-          <Col xs={2} sm={2} md={2}>
-            <Card.Title>{companyName}</Card.Title>
-          </Col>
-          <Col xs={7} sm={6} md={7}>
-            <div>{dateText}</div>
-          </Col>
-          <Col xs={2} sm={3} md={2} className="text-end">
-            <div>{offerDisplay}</div>
-          </Col>
-          <Col xs={1} sm={1} md={1}>
-            <div className="badge bg-success">{status}</div>
-          </Col>
-        </Row>
-      </Card.Header>
-      <Card.Body>
-        <Row>
-          <Col md={4}>
-            <Card.Subtitle className="mb-2 text-muted">{nickName}</Card.Subtitle>
-            <Card.Text className="mb-0">{grade}</Card.Text>
-            <Card.Text className="mb-2">{stage}</Card.Text>
-          </Col>
-          <Col md={6}>
-            <Card.Title>{articleTitle}</Card.Title>
-            <Card.Text>{articleDescription}</Card.Text>
-          </Col>
-          <Col md={{ span: 10, offset: 2 }} className="d-flex justify-content-end">
-            <Button variant="primary">Подробнее</Button>
-          </Col>
-        </Row>
-      </Card.Body>
+    <Card>
+      <CardContent>
+        <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 2fr 1fr', gap: 2 }}>
+          <Typography sx={{ marginBottom: 1 }} gutterBottom variant="h5">
+            {companyName}
+          </Typography>
+
+          <Typography sx={{ justifySelf: 'flex-end' }} variant="body1">
+            {formatOffer(prefix, minoffer, maxoffer)}
+          </Typography>
+
+          {createChips(status)}
+        </Box>
+
+        <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 3fr' }}>
+          <Box>
+            {nickName && (
+              <Typography variant="subtitle1" color="text.secondary" component="div">
+                Автор: {nickName}
+              </Typography>
+            )}
+
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 1,
+                marginBottom: 1,
+                alignItems: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              Грейд: {createChips(grade)}
+            </Box>
+
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+              Этап: {createChips(stage)}
+            </Box>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" color="text.secondary">
+              {articleTitle}
+            </Typography>
+
+            <Typography variant="body2" color="text.secondary">
+              {articleDescription}
+            </Typography>
+          </Box>
+        </Box>
+      </CardContent>
+
+      <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Link href={`/interwiev/${id}`}>
+          <Button>Подробнее</Button>
+        </Link>
+      </CardActions>
     </Card>
   );
 };

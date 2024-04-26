@@ -1,8 +1,7 @@
+import { Box } from '@mui/material';
 import { InterviewAllItem } from '@network/models/interviews.model';
 
 import CardInterviewItem from '../CardInterviewItem/CardInterviewItem';
-
-import style from '../cardInterview.module.scss';
 
 export type CardProps = {
   data?: InterviewAllItem[];
@@ -10,9 +9,9 @@ export type CardProps = {
 
 const CardInterviewList = ({ data }: CardProps) => {
   return (
-    <div className={style.wrapperList}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       {data?.map(interview => <CardInterviewItem key={interview.id} {...interview} />)}
-    </div>
+    </Box>
   );
 };
 

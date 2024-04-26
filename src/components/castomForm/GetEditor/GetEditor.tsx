@@ -9,9 +9,9 @@ const controllerEditor: Record<
     FC<ControlledItemProps<FieldValues> & { ref?: React.Ref<HTMLElement> }>
   >
 > = {
-  text: lazy(() => import('@components/castomForm/GetEditor/Editors/Text')),
-  password: lazy(() => import('@components/castomForm/GetEditor/Editors/Password')),
-  select: lazy(() => import('@components/castomForm/GetEditor/Editors/Select')),
+  text: lazy(() => import('@components/castomForm/GetEditor/Editors/Text/index')),
+  password: lazy(() => import('@components/castomForm/GetEditor/Editors/Password/index')),
+  select: lazy(() => import('@components/castomForm/GetEditor/Editors/Select/index')),
 };
 
 const GetEditor = <FormType extends FieldValues>(

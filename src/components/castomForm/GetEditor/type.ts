@@ -1,5 +1,5 @@
 import { FieldValues, Path, PathValue } from 'react-hook-form';
-import { GroupBase, OptionsOrGroups } from 'react-select';
+import { SelectVariants } from '@mui/material';
 
 export type TypeForm = 'text' | 'password' | 'select';
 export type FormItemBase<FormType extends FieldValues> = {
@@ -13,18 +13,10 @@ export type FormItemBase<FormType extends FieldValues> = {
   required?: boolean;
   editorProps?: FieldValues;
   disabled?: boolean;
+  variant?: SelectVariants;
 };
 export type FormItemSelect<FormType extends FieldValues> = {
-  options?: OptionsOrGroups<
-    {
-      value: string;
-      label: string;
-    },
-    GroupBase<{
-      value: string;
-      label: string;
-    }>
-  >;
+  options?: { value: string; label: string }[];
   isMulti?: boolean;
 } & FormItemBase<FormType>;
 export type PermissionsType = 'read' | 'write';

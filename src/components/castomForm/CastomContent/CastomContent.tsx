@@ -1,19 +1,20 @@
 import { ReactNode, useCallback } from 'react';
-import { Form } from 'react-bootstrap';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { FieldValues, Form, useFormContext, UseFormReset } from 'react-hook-form';
 
 import { useFormStore } from '../hook/useForm/useFormStore';
 
-type IProps = {
+type IProps<FormType extends FieldValues> = {
   children: ReactNode;
   onSubmitForm?: (data: any) => void;
+  onResetForm?: (reset: UseFormReset<FormType>) => void;
 };
 
 const CastomContent = <FormType extends FieldValues>({
   children,
   onSubmitForm,
-}: IProps) => {
-  const { handleSubmit } = useFormContext<FormType>();
+  onResetForm,
+}: IProps<FormType>) => {
+  const { handleSubmit, reset } = useFormContext<FormType>();
 
   const { useStore } = useFormStore();
   const [formName] = useStore(s => s.formName);
@@ -32,10 +33,12 @@ const CastomContent = <FormType extends FieldValues>({
     <Form
       data-testid="form"
       noValidate
-      id={formName}
-      onSubmit={event => {
-        event.preventDefault();
+      id={formName || 'defaulForm'}
+      onSubmit={() => {
         handleSubmit(onValid, onInvalid)();
+      }}
+      onReset={() => {
+        onResetForm?.(reset);
       }}
     >
       {children}

@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import CastomForm from '@components/castomForm';
-import Container from '@components/Container';
 import { LOGIN_PATH } from '@constatns/pathPage';
+import { Button, Container, Typography } from '@mui/material';
 import { postItem } from '@network/api/api';
 import { AllEntityesParamsDto } from '@network/types';
 import { useAuthStore } from '@stores/useGlobalStore';
 import { useMutation } from '@tanstack/react-query';
 
 import { inputsDefs } from './confDefs/confDefs';
-
-import style from './style.module.scss';
 
 const Registration = () => {
   const object = 'auth/registration';
@@ -49,20 +46,22 @@ const Registration = () => {
   }
 
   return (
-    <div className={style.authenticationWrap}>
-      <Container>
-        <Link to={LOGIN_PATH}>Автризация</Link>
-        <CastomForm>
-          <CastomForm.Form onSubmitForm={handleSubmit}>
-            <h1 className={style.authenticationFormTitle}>Регистрация</h1>
-            <CastomForm.Items items={inputsDefs} />
-            <Button type="submit" disabled={registrationMutation.isPending}>
-              Зарегистрироваться
-            </Button>
-          </CastomForm.Form>
-        </CastomForm>
-      </Container>
-    </div>
+    <Container>
+      <Link to={LOGIN_PATH}>Автризация</Link>
+      <CastomForm defaultValues={{}}>
+        <CastomForm.Form onSubmitForm={handleSubmit}>
+          <Typography variant="h1">Регистрация</Typography>
+          <CastomForm.Items items={inputsDefs} />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={registrationMutation.isPending}
+          >
+            Зарегистрироваться
+          </Button>
+        </CastomForm.Form>
+      </CastomForm>
+    </Container>
   );
 };
 
