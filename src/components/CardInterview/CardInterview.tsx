@@ -19,8 +19,7 @@ const CardInterview = () => {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['interviews', currentPage, pageSize, filter],
-    queryFn: () =>
-      getList('interviews', { page: currentPage, pageSize, ...filter } as any),
+    queryFn: () => getList('interviews', { page: currentPage, pageSize, ...filter }),
   });
 
   const interviews = data?.interviews;
