@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <Container>
       <Link to={REGISTRATION_PATH}>Регистрация</Link>
-      <CastomForm defaultValues={{}}>
+      <CastomForm>
         <CastomForm.Form onSubmitForm={handleSubmit}>
           <Typography variant="h1">Авторизация</Typography>
           <CastomForm.Items items={inputsDefs} />

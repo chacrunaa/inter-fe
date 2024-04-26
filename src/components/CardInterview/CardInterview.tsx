@@ -1,20 +1,13 @@
 import { useCallback } from 'react';
 import QueryWrapper from '@components/QueryWrapper';
-import {
-  Box,
-  FormControl,
-  MenuItem,
-  Pagination,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
 import { getList } from '@network/api/api';
-import { useIterwievStore } from '@stores/useGlobalStore';
+import { useIterwievStore } from '@stores/useIterwievStore/useIterwievStore';
 import { useQuery } from '@tanstack/react-query';
 
 import CardInterviewFilter from './CardInterviewFilter/CardInterviewFilter';
 import CardInterviewList from './CardInterviewList/CardInterviewList';
+import CardInterviewPagination from './CardInterviewPagination/CardInterviewPagination';
 
 const CardInterview = () => {
   const pageSize = useIterwievStore(s => s.pageSize);
@@ -22,6 +15,7 @@ const CardInterview = () => {
   const currentPage = useIterwievStore(s => s.currentPage);
   const setCurrentPage = useIterwievStore(s => s.setCurrentPage);
   const filter = useIterwievStore(s => s.filter);
+  const setFilter = useIterwievStore(s => s.setFilter);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['interviews', currentPage, pageSize, filter],
@@ -49,39 +43,17 @@ const CardInterview = () => {
 
   return (
     <>
-      <CardInterviewFilter />
+      <CardInterviewFilter filter={filter} setFilter={setFilter} />
       <QueryWrapper isLoading={isLoading} error={isError}>
         <CardInterviewList data={interviews} />
       </QueryWrapper>
-      <Box
-        sx={{
-          display: 'flex',
-          marginTop: 3,
-          alignItems: 'center',
-          gap: 1,
-          justifyContent: 'space-between',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-          }}
-        >
-          <Typography variant="body1">Элементов на страницу:</Typography>
-          <FormControl>
-            <Select value={pageSize.toString()} onChange={handleChangeRowsPerPage}>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={25}>25</MenuItem>
-              <MenuItem value={50}>50</MenuItem>
-              <MenuItem value={100}>100</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <Pagination count={totalPages} page={currentPage} onChange={handleChangePage} />
-      </Box>
+      <CardInterviewPagination
+        pageSize={pageSize}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        handleChangePage={handleChangePage}
+      />
     </>
   );
 };
