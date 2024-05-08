@@ -11,7 +11,9 @@ const DENIED_PATH_GROUPS = [
   module.exports = {
     env: {
       browser: true,
-      es2021: true
+      es2021: true,
+       node: 'current', 
+      'jest/globals': true
     },
     settings: {
       'import/resolver': {
@@ -45,7 +47,7 @@ const DENIED_PATH_GROUPS = [
       project: ['./tsconfig.json'],
       sourceType: 'module'
     },
-    plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier', "simple-import-sort"],
+    plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier', "simple-import-sort", "jest"],
     rules: {
       'prettier/prettier': 'warn',
       'no-restricted-imports': [2, {
@@ -224,6 +226,7 @@ const DENIED_PATH_GROUPS = [
           ]
         }
       }
-    ]
+    ],
+    'jest/no-focused-tests': 'off',
   };
   

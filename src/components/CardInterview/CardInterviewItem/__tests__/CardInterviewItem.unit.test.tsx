@@ -1,0 +1,59 @@
+import CardInterviewItem, {
+  Props,
+} from '@components/CardInterview/CardInterviewItem/CardInterviewItem';
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+
+describe('Тестирование CardInterviewItem', () => {
+  let mockPropsForCardItem = {} as Props;
+
+  beforeEach(() => {
+    mockPropsForCardItem = {
+      id: 78231,
+      companyName: 'Газпром',
+      //@ts-ignore Требуется правка типа полей со стороны бэка
+      status: ['processing'],
+      //@ts-ignore
+      grade: ['middle'],
+      //@ts-ignore
+      stage: ['conversation'],
+      articleTitle: 'Заголовок статьи',
+      articleDescription: 'Я ему одно, он мне другое, так и живём',
+      nickName: 'Лютый',
+      //@ts-ignore
+      minoffer: 10000,
+      maxoffer: 10000,
+      prefix: '',
+    };
+  });
+
+  it('рендеринг компонента с полными данными', () => {
+    render(<CardInterviewItem {...mockPropsForCardItem} />);
+    expect(screen.getByText(mockPropsForCardItem.companyName)).toBeInTheDocument();
+    expect(screen.getByText(/в процессе/i)).toBeInTheDocument();
+    expect(screen.getByText(/знакомство/i)).toBeInTheDocument();
+    expect(screen.getByText(/опытный специалист/i)).toBeInTheDocument();
+    expect(screen.getByText(/10 000 - 10 000/)).toBeInTheDocument();
+    expect(screen.getByText(/₽/)).toBeInTheDocument();
+    expect(screen.getByText(/подробнее/i)).toBeInTheDocument();
+    expect(screen.getByText(/Грейд/i)).toBeInTheDocument();
+    expect(screen.getByText(/Этап/i)).toBeInTheDocument();
+    expect(screen.getByText(/Автор/)).toBeInTheDocument();
+  });
+  it('снэпшот с полными данными', () => {
+    const card = render(<CardInterviewItem {...mockPropsForCardItem} />);
+    expect(card).toMatchSnapshot();
+  });
+  it('проверка значения и перехода по ссылке', () => {
+    render(
+      <MemoryRouter>
+        <CardInterviewItem {...mockPropsForCardItem} />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole('link', { name: /подробнее/i })).toHaveAttribute(
+      'href',
+      `/interwiev/${mockPropsForCardItem.id}`,
+    );
+  });
+});

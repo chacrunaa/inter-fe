@@ -15,7 +15,7 @@ import { InterviewAllItem } from '@network/models/interviews.model';
 
 import { INTERVIEW_GRADE_STATUS_STAGE } from '../constans';
 
-type Props = InterviewAllItem;
+export type Props = InterviewAllItem;
 
 const CardInterviewItem = (props: Props) => {
   const {

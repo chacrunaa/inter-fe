@@ -7,11 +7,12 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "ESNext",
+    "module": "es2022",
+    "moduleResolution": "Node",
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    // "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -41,4 +42,5 @@
   "include": ["src"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
+
 }
