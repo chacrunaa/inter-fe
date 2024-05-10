@@ -1,6 +1,7 @@
 import CardInterviewItem, {
   Props,
 } from '@components/CardInterview/CardInterviewItem/CardInterviewItem';
+import { fakeInterviewItem } from '@components/CardInterview/testsMock.data';
 import '@testing-library/jest-dom';
 import { render, screen} from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -9,25 +10,9 @@ describe('Тестирование CardInterviewItem', () => {
   let mockPropsForCardItem = {} as Props;
 
   beforeEach(() => {
-    mockPropsForCardItem = {
-      id: 78231,
-      companyName: 'Газпром',
-      //@ts-ignore Требуется правка типа полей со стороны бэка
-      status: ['processing'],
-      //@ts-ignore
-      grade: ['middle'],
-      //@ts-ignore
-      stage: ['conversation'],
-      articleTitle: 'Заголовок статьи',
-      articleDescription: 'Я ему одно, он мне другое, так и живём',
-      nickName: 'Лютый',
-      //@ts-ignore
-      minoffer: 10000,
-      maxoffer: 10000,
-      prefix: '',
-    };
+    mockPropsForCardItem = fakeInterviewItem
   });
-
+ 
   it('рендеринг компонента с полными данными', () => {
     render(<CardInterviewItem {...mockPropsForCardItem} />);
     expect(screen.getByText(mockPropsForCardItem.companyName)).toBeInTheDocument();

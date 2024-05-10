@@ -14,7 +14,7 @@ import {
 import { InterviewAllItem } from '@network/models/interviews.model';
 
 import { INTERVIEW_GRADE_STATUS_STAGE } from '../constans';
-import { changeTitle, generateColorChips } from '@components/CardInterview/CardInterviewItem/cardInterviewItem.utils';
+import { changeTitle, generateColorChips } from '@components/CardInterview/CardInterviewItem/utils/cardInterviewItem.utils';
 
 export type Props = InterviewAllItem;
 

@@ -356,9 +356,7 @@ exports[`Тестирование CardInterviewItem снэпшот с полны
               </h6>
               <p
                 class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-              >
-                Я ему одно, он мне другое, так и живём
-              </p>
+              />
             </div>
           </div>
         </div>
@@ -465,9 +463,7 @@ exports[`Тестирование CardInterviewItem снэпшот с полны
             </h6>
             <p
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-            >
-              Я ему одно, он мне другое, так и живём
-            </p>
+            />
           </div>
         </div>
       </div>

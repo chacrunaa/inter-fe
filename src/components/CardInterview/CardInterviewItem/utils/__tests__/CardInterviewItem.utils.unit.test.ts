@@ -1,7 +1,7 @@
 import {
   changeTitle,
   generateColorChips,
-} from '@components/CardInterview/CardInterviewItem/cardInterviewItem.utils';
+} from '@components/CardInterview/CardInterviewItem/utils/cardInterviewItem.utils';
 import { INTERVIEW_GRADE_STATUS_STAGE } from '@components/CardInterview/constans';
 
 describe('тест функции generateColorChips', () => {
@@ -47,7 +47,7 @@ describe('тест функции changeTitle', () => {
     { status: 'junior', expectedOutput: 'Начинающий специалист' },
     { status: 'middle', expectedOutput: 'Опытный специалист' },
     { status: 'senior', expectedOutput: 'Ведущий специалист' },
-    { status: 'unknown', expectedOutput: undefined }, // Проверка на несуществующий статус
+    { status: 'unknown', expectedOutput: undefined },
   ];
 
   it.each(testCases)(
