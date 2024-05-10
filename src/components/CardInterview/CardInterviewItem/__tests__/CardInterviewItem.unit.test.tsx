@@ -2,7 +2,7 @@ import CardInterviewItem, {
   Props,
 } from '@components/CardInterview/CardInterviewItem/CardInterviewItem';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Тестирование CardInterviewItem', () => {
@@ -41,19 +41,35 @@ describe('Тестирование CardInterviewItem', () => {
     expect(screen.getByText(/Этап/i)).toBeInTheDocument();
     expect(screen.getByText(/Автор/)).toBeInTheDocument();
   });
+  it('рендеринг компонента с отсутствующим articleDescription', () => {
+    //@ts-ignore
+    mockPropsForCardItem.articleDescription = null
+    render(<CardInterviewItem {...mockPropsForCardItem} />);
+    expect(screen.queryByText('Я ему одно, он мне другое, так и живём')).toBeNull();
+    
+  });
   it('снэпшот с полными данными', () => {
     const card = render(<CardInterviewItem {...mockPropsForCardItem} />);
     expect(card).toMatchSnapshot();
   });
-  it('проверка значения и перехода по ссылке', () => {
+  it('снэпшот с отсутствующим articleDescription', () => {
+    //@ts-ignore
+    mockPropsForCardItem.articleDescription = null
+    const card = render(<CardInterviewItem {...mockPropsForCardItem} />);
+    expect(card).toMatchSnapshot();
+  });
+  it('проверка значения ссылки', () => {
     render(
       <MemoryRouter>
         <CardInterviewItem {...mockPropsForCardItem} />
       </MemoryRouter>,
     );
-    expect(screen.getByRole('link', { name: /подробнее/i })).toHaveAttribute(
+    const link = screen.getByRole('link', { name: /подробнее/i })
+
+    expect(link).toHaveAttribute(
       'href',
       `/interwiev/${mockPropsForCardItem.id}`,
     );
   });
+  
 });

@@ -14,6 +14,7 @@ import {
 import { InterviewAllItem } from '@network/models/interviews.model';
 
 import { INTERVIEW_GRADE_STATUS_STAGE } from '../constans';
+import { changeTitle, generateColorChips } from '@components/CardInterview/CardInterviewItem/cardInterviewItem.utils';
 
 export type Props = InterviewAllItem;
 
@@ -32,25 +33,9 @@ const CardInterviewItem = (props: Props) => {
     prefix,
   } = props;
 
-  const generateColorChips = useCallback((item: string) => {
-    switch (item) {
-      case 'failure':
-        return 'error';
-      case 'processing':
-        return 'info';
-      case 'successful':
-        return 'success';
+  const generateColorChipsMemo = useCallback(generateColorChips, []);
 
-      default:
-        return 'default';
-    }
-  }, []);
-
-  const changeTitle = useCallback(
-    (item: keyof typeof INTERVIEW_GRADE_STATUS_STAGE | undefined) =>
-      item ? INTERVIEW_GRADE_STATUS_STAGE[item] : undefined,
-    [],
-  );
+  const changeTitleMemo =  useCallback(changeTitle, [])
 
   const createChips = useCallback(
     (arr: string | string[]) => {
@@ -58,10 +43,10 @@ const CardInterviewItem = (props: Props) => {
         const resilt = arr?.map((item: string) => (
           <Chip
             key={item}
-            label={changeTitle(
+            label={changeTitleMemo(
               item as keyof typeof INTERVIEW_GRADE_STATUS_STAGE | undefined,
             )}
-            color={generateColorChips(item)}
+            color={generateColorChipsMemo(item)}
           />
         ));
         return resilt;

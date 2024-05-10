@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --config ./.eslintrc.cjs src --ext .ts,.tsx,.cjs",
     "preview": "vite preview",
-    "test": "jest --coverage",
+    "test": "jest --coverage --verbose",
     "api-types": "npx dotenv-cli -e .env -- openapi-typescript \"http://localhost:5000/api/docs-json\" --output src/types/generated-api.ts"
   },
   "dependencies": {
