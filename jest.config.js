@@ -13,6 +13,9 @@ const config = {
       '^.+\\.svg$': 'jest-svg-transformer',
       '^.+\\.css$': 'identity-obj-proxy',
       '^@components/(.*)$': '<rootDir>/src/components/$1', 
+      '^@network/(.*)$': '<rootDir>/src/network/$1',
+      '^@stores/(.*)$': '<rootDir>/src/stores/$1',
+      '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     },
   };
   

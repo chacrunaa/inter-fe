@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "useDefineForClassFields": true,
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "module": "es2022",
+    "module": "ES2020",
     "moduleResolution": "Node",
     "skipLibCheck": true,
 
@@ -24,7 +23,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
+    "esModuleInterop": true,
     /* Alias */
     "baseUrl": ".",
     "paths": {
@@ -41,6 +40,6 @@
   },
   "include": ["src"],
   "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
 
 }
