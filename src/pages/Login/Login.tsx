@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import CastomForm from '@components/castomForm';
 import { REGISTRATION_PATH } from '@constatns/pathPage';
 import { Container, Typography } from '@mui/material';
@@ -8,6 +6,8 @@ import { postAuth } from '@network/api/api';
 import { AllEntityesParamsDto } from '@network/types';
 import { useAuthStore } from '@stores/useGlobalStore';
 import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { inputsDefs } from './confDefs/confDefs';
 
@@ -23,7 +23,7 @@ const Login = () => {
     mutationFn: (formData: AllEntityesParamsDto['auth/login']) =>
       postAuth(object, formData),
     onSuccess(data) {
-      if (!!data?.token) {
+      if (data?.token) {
         setToken(data.token);
         navigate('/');
       } else {
@@ -37,12 +37,12 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!!token) {
+    if (token) {
       navigate('/');
     }
   }, [navigate, token]);
 
-  if (!!token) {
+  if (token) {
     return null;
   }
 

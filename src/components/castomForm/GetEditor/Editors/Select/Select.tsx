@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 import {
   Box,
   Chip,
@@ -12,6 +10,8 @@ import {
   Select as MuiSelect,
   SelectVariants,
 } from '@mui/material';
+import { useState } from 'react';
+import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 
 import { ControlledItemProps } from '../../type';
 

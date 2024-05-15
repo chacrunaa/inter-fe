@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
 import QueryWrapper from '@components/QueryWrapper';
 import { SelectChangeEvent } from '@mui/material';
 import { getList } from '@network/api/api';
 import { useIterwievStore } from '@stores/useIterwievStore/useIterwievStore';
 import { useQuery } from '@tanstack/react-query';
+import { useCallback } from 'react';
 
 import CardInterviewFilter from './CardInterviewFilter/CardInterviewFilter';
 import CardInterviewList from './CardInterviewList/CardInterviewList';
@@ -15,8 +15,7 @@ const CardInterview = () => {
   const currentPage = useIterwievStore(s => s.currentPage);
   const setCurrentPage = useIterwievStore(s => s.setCurrentPage);
   const filter = useIterwievStore(s => s.filter);
-  const setFilter = useIterwievStore(s => s.setFilter);
-
+  const setFilter = useIterwievStore(a => a.setFilter);
   const { data, isLoading, isError } = useQuery({
     queryKey: ['interviews', currentPage, pageSize, filter],
     queryFn: () => getList('interviews', { page: currentPage, pageSize, ...filter }),

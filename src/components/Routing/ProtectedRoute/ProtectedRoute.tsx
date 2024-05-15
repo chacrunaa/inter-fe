@@ -1,6 +1,6 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { LOGIN_PATH } from '@constatns/pathPage';
 import { useAuthStore } from '@stores/useGlobalStore';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const ProtectedRoute = () => {
   const isAuthenticated = useAuthStore(s => s.token);

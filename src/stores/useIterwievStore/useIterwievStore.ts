@@ -1,6 +1,6 @@
+import { cleanedObject } from '@utils/utils';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { cleanedObject } from '@utils/utils';
 
 import { CURRENT_PAGE, PAGE_SIZE } from './constants';
 import { ActionsInterwiev, StoreInterwiev } from './types';

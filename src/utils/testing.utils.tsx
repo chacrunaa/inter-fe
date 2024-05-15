@@ -1,6 +1,6 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { ReactElement } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient({
@@ -17,13 +17,13 @@ interface RenderWithProvidersOptions extends RenderOptions {
 
 const renderWithProviders = (
   ui: ReactElement,
-  options?: RenderWithProvidersOptions
+  options?: RenderWithProvidersOptions,
 ): RenderResult => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
     <MemoryRouter>
-    <QueryClientProvider client={queryClient} {...options?.wrapperProps}>
-      {children}
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient} {...options?.wrapperProps}>
+        {children}
+      </QueryClientProvider>
     </MemoryRouter>
   );
 

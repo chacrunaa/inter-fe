@@ -1,0 +1,6 @@
+.eslintrc.cjs
+**/*.test.js
+**/*.test.jsx
+**/*.test.ts
+**/*.test.tsx
+commitlint.config.cjs

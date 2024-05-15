@@ -1,5 +1,7 @@
-import { useCallback } from 'react';
-import { isArray } from 'lodash';
+import {
+  changeTitle,
+  generateColorChips,
+} from '@components/CardInterview/CardInterviewItem/utils/cardInterviewItem.utils';
 import { formatOffer } from '@components/CardInterview/utils/utils';
 import {
   Box,
@@ -12,9 +14,10 @@ import {
   Typography,
 } from '@mui/material';
 import { InterviewAllItem } from '@network/models/interviews.model';
+import { isArray } from 'lodash';
+import { useCallback } from 'react';
 
 import { INTERVIEW_GRADE_STATUS_STAGE } from '../constans';
-import { changeTitle, generateColorChips } from '@components/CardInterview/CardInterviewItem/utils/cardInterviewItem.utils';
 
 export type Props = InterviewAllItem;
 
@@ -35,7 +38,7 @@ const CardInterviewItem = (props: Props) => {
 
   const generateColorChipsMemo = useCallback(generateColorChips, []);
 
-  const changeTitleMemo =  useCallback(changeTitle, [])
+  const changeTitleMemo = useCallback(changeTitle, []);
 
   const createChips = useCallback(
     (arr: string | string[]) => {

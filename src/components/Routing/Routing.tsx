@@ -1,6 +1,6 @@
+import { HOME_PATH, LOGIN_PATH, REGISTRATION_PATH } from '@constatns/pathPage';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { HOME_PATH, LOGIN_PATH, REGISTRATION_PATH } from '@constatns/pathPage';
 
 const NotFound = lazy(() => import('@pages/NotFound'));
 const MainMenu = lazy(() => import('@pages/MainMenu'));
