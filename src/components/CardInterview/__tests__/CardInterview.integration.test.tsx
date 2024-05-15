@@ -1,9 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render,screen, waitFor } from '@utils/testing.utils';
 
 import CardInterview from '../CardInterview';
 import '@testing-library/jest-dom';
-import { QueryClient } from '@tanstack/react-query';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { fakeInterviewItem } from '@components/CardInterview/testsMock.data';
 
 jest.mock('@network/api/api', () => ({
@@ -19,19 +17,11 @@ jest.mock('@network/api/api', () => ({
 }));
 
 describe('CardInterview Блок с фильтрами, списком и пагинацией', () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
+ 
 
   it('отображаются все фильры', async () => {
     render(
-      <QueryClientProvider client={queryClient}>
         <CardInterview />
-      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -46,9 +36,7 @@ describe('CardInterview Блок с фильтрами, списком и паг
 
   it('отображается лист с правильными данными после загрузки', async () => {
     render(
-      <QueryClientProvider client={queryClient}>
         <CardInterview />,
-      </QueryClientProvider>,
     );
     await waitFor(() => {
       expect(screen.getByText(/газпром/i)).toBeInTheDocument();
@@ -57,9 +45,7 @@ describe('CardInterview Блок с фильтрами, списком и паг
   });
   it('отображается пагинация', async () => {
     render(
-      <QueryClientProvider client={queryClient}>
         <CardInterview />,
-      </QueryClientProvider>,
     );
     await waitFor(() => {
       expect(screen.getByLabelText(/pagination/i)).toBeInTheDocument();
@@ -68,9 +54,7 @@ describe('CardInterview Блок с фильтрами, списком и паг
   });
   it('скриншотный тест', async () => {
     const component =  render(
-      <QueryClientProvider client={queryClient}>
         <CardInterview />,
-      </QueryClientProvider>,
     );
     await waitFor(() => {
       expect(screen.getByText(/газпром/i)).toBeInTheDocument();

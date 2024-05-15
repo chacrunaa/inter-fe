@@ -565,7 +565,6 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
           </ul>
         </nav>
       </div>
-      ,
     </div>
   </body>,
   "container": <div>
@@ -1129,7 +1128,6 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
         </ul>
       </nav>
     </div>
-    ,
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

@@ -3,7 +3,7 @@ const config = {
     preset: 'ts-jest',
     coverageDirectory: 'coverage',
     testEnvironment: 'jsdom',
-    setupFilesAfterEnv: ['<rootDir>/setup-tests.js'],
+    setupFilesAfterEnv: ['<rootDir>/setup-tests.ts'],
     transform: {
       '^.+\\.(js|jsx)$': 'babel-jest',
       "^.+\\.(tsx|ts)$": "ts-jest" ,
