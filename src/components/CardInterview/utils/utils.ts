@@ -6,9 +6,9 @@ export const formatOffer = (
   if (minOffer && maxOffer) {
     return `${minOffer.toLocaleString()} - ${maxOffer.toLocaleString()} ₽`;
   } else if (minOffer) {
-    return `${prefix} ${minOffer.toLocaleString()} ₽`;
+    return `${prefix || 'от'} ${minOffer.toLocaleString()} ₽`;
   } else if (maxOffer) {
-    return `${prefix} ${maxOffer.toLocaleString()} ₽`;
+    return `${prefix || 'до'} ${maxOffer.toLocaleString()} ₽`;
   } else {
     return 'Размер офера не указан';
   }

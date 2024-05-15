@@ -38,8 +38,17 @@ export interface paths {
   "/interviews": {
     /** Получение и фильтрация статей */
     get: operations["InterviewsController_findAll"];
+    /** Обновление статьи */
+    put: operations["InterviewsController_update"];
     /** Создание новой статьи с описанием собеса */
     post: operations["InterviewsController_create"];
+    /** Удаление статьи */
+    delete: operations["InterviewsController_delete"];
+  };
+  "/companies": {
+    get: operations["CompaniesController_findAll"];
+    /** Создание компании */
+    post: operations["CompaniesController_create"];
   };
 }
 
@@ -136,11 +145,6 @@ export interface components {
        * @example Я ему одно, он мне другое, так и живём
        */
       articleDescription: string;
-      /**
-       * @description Уникальный никнэйм пользователя
-       * @example Лютый
-       */
-      nickName: string;
       /**
        * @description Минимальное предложение по зп. Может быть не указано
        * @example 10000
@@ -245,6 +249,108 @@ export interface components {
       pageSize: number;
       /** @description Список статей */
       interviews: components["schemas"]["Interview"][];
+    };
+    DeleteInterviewsDto: {
+      /**
+       * @description id статьи которую желаем удалить
+       * @example 123
+       */
+      id: number;
+    };
+    PutInterviewsDto: {
+      /**
+       * @description id Статьи
+       * @example 100
+       */
+      id: number;
+      /**
+       * @description Название компании
+       * @example Газпром
+       */
+      companyName?: string;
+      /**
+       * @description Финальный статус взаимодействия с компанией
+       * @example [
+       *   "successful"
+       * ]
+       */
+      status?: ("processing" | "failure" | "successful")[];
+      /**
+       * @description Грейд требуемый компанией. Может быть несколько значений
+       * @example [
+       *   "junior",
+       *   "middle",
+       *   "senior"
+       * ]
+       */
+      grade?: ("junior" | "senior" | "middle")[];
+      /**
+       * @description Этап взаимодействия с компанией
+       * @example [
+       *   "livecoding",
+       *   "conversation",
+       *   "techpart"
+       * ]
+       */
+      stage?: ("conversation" | "livecoding" | "techpart" | "scrinning")[];
+      /**
+       * @description Заголовок статьи
+       * @example Моё собеседование в газпром, это было ужасно
+       */
+      articleTitle?: string;
+      /**
+       * @description Описание статьи, будет формате markdown
+       * @example Я ему одно, он мне другое, так и живём
+       */
+      articleDescription?: string;
+      /**
+       * @description Уникальный никнэйм пользователя
+       * @example Лютый
+       */
+      nickName?: string;
+      /**
+       * @description Минимальное предложение по зп. Может быть не указано
+       * @example 10000
+       */
+      minoffer?: number;
+      /**
+       * @description Максимальное предложение по зп. Может быть не указано
+       * @example 20000
+       */
+      maxoffer?: number;
+    };
+    CreateCompanyDto: {
+      /**
+       * @description Название компании
+       * @example Газпром
+       */
+      companyName: string;
+      /**
+       * @description Описание компании
+       * @example Классная внатуре компания, газ качает
+       */
+      description: string;
+    };
+    Company: {
+      /**
+       * @description Уникальный идентификатор
+       * @example 1
+       */
+      id: number;
+      /**
+       * @description Название компании
+       * @example Газпром
+       */
+      companyName: string;
+      /**
+       * @description Описание компании
+       * @example Классная внатуре компания, газ качает
+       */
+      description: string;
+    };
+    GetCompaniesDto: {
+      /** @description Список компаний */
+      companies: components["schemas"]["Company"][];
     };
   };
   responses: never;
@@ -403,6 +509,17 @@ export interface operations {
       };
     };
   };
+  /** Обновление статьи */
+  InterviewsController_update: {
+    responses: {
+      /** @description Обновить статью по Id. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PutInterviewsDto"];
+        };
+      };
+    };
+  };
   /** Создание новой статьи с описанием собеса */
   InterviewsController_create: {
     parameters: {
@@ -420,6 +537,54 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["Interview"];
+        };
+      };
+    };
+  };
+  /** Удаление статьи */
+  InterviewsController_delete: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["DeleteInterviewsDto"];
+      };
+    };
+    responses: {
+      /** @description Удалить статью */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DeleteInterviewsDto"];
+        };
+      };
+    };
+  };
+  CompaniesController_findAll: {
+    parameters: {
+      query?: {
+        /** @description Определенная компания */
+        companyId?: number;
+      };
+    };
+    responses: {
+      /** @description Получить список компаний */
+      200: {
+        content: {
+          "application/json": components["schemas"]["GetCompaniesDto"];
+        };
+      };
+    };
+  };
+  /** Создание компании */
+  CompaniesController_create: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateCompanyDto"];
+      };
+    };
+    responses: {
+      /** @description Компания создана */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Company"];
         };
       };
     };
