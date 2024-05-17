@@ -3,52 +3,51 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/users": {
+  '/users': {
     /** Получить всех пользователей */
-    get: operations["UsersController_getAll"];
+    get: operations['UsersController_getAll'];
     /** Создание пользователя */
-    post: operations["UsersController_create"];
+    post: operations['UsersController_create'];
   };
-  "/users/role": {
+  '/users/role': {
     /** Выдать роль */
-    post: operations["UsersController_addRole"];
+    post: operations['UsersController_addRole'];
   };
-  "/users/ban": {
+  '/users/ban': {
     /** Забанить пользователя */
-    post: operations["UsersController_ban"];
+    post: operations['UsersController_ban'];
   };
-  "/roles": {
-    post: operations["RolesController_create"];
+  '/roles': {
+    post: operations['RolesController_create'];
   };
-  "/roles/{value}": {
-    get: operations["RolesController_getByValue"];
+  '/roles/{value}': {
+    get: operations['RolesController_getByValue'];
   };
-  "/auth/login": {
-    post: operations["AuthController_login"];
+  '/auth/login': {
+    post: operations['AuthController_login'];
   };
-  "/auth/registration": {
-    post: operations["AuthController_registration"];
+  '/auth/registration': {
+    post: operations['AuthController_registration'];
   };
-  "/api/posts": {
-    get: operations["PostsController_getAllPosts"];
-    post: operations["PostsController_createPost"];
+  '/api/posts': {
+    get: operations['PostsController_getAllPosts'];
+    post: operations['PostsController_createPost'];
   };
-  "/interviews": {
+  '/interviews': {
     /** Получение и фильтрация статей */
-    get: operations["InterviewsController_findAll"];
+    get: operations['InterviewsController_findAll'];
     /** Обновление статьи */
-    put: operations["InterviewsController_update"];
+    put: operations['InterviewsController_update'];
     /** Создание новой статьи с описанием собеса */
-    post: operations["InterviewsController_create"];
+    post: operations['InterviewsController_create'];
     /** Удаление статьи */
-    delete: operations["InterviewsController_delete"];
+    delete: operations['InterviewsController_delete'];
   };
-  "/companies": {
-    get: operations["CompaniesController_findAll"];
+  '/companies': {
+    get: operations['CompaniesController_findAll'];
     /** Создание компании */
-    post: operations["CompaniesController_create"];
+    post: operations['CompaniesController_create'];
   };
 }
 
@@ -116,7 +115,7 @@ export interface components {
        *   "successful"
        * ]
        */
-      status: ("processing" | "failure" | "successful")[];
+      status: ('processing' | 'failure' | 'successful')[];
       /**
        * @description Грейд требуемый компанией. Может быть несколько значений
        * @example [
@@ -125,7 +124,7 @@ export interface components {
        *   "senior"
        * ]
        */
-      grade: ("junior" | "senior" | "middle")[];
+      grade: ('junior' | 'senior' | 'middle')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -134,7 +133,7 @@ export interface components {
        *   "techpart"
        * ]
        */
-      stage: ("conversation" | "livecoding" | "techpart" | "scrinning")[];
+      stage: ('conversation' | 'livecoding' | 'techpart' | 'scrinning')[];
       /**
        * @description Заголовок статьи
        * @example Моё собеседование в газпром, это было ужасно
@@ -184,7 +183,7 @@ export interface components {
        * ]
        * @enum {string}
        */
-      status: "conversation" | "livecoding" | "techpart" | "scrinning";
+      status: 'conversation' | 'livecoding' | 'techpart' | 'scrinning';
       /**
        * @description Грейд требуемый компанией. Может быть несколько значений
        * @example [
@@ -194,7 +193,7 @@ export interface components {
        * ]
        * @enum {string}
        */
-      grade: "junior" | "senior" | "middle";
+      grade: 'junior' | 'senior' | 'middle';
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -204,7 +203,7 @@ export interface components {
        * ]
        * @enum {string}
        */
-      stage: "conversation" | "livecoding" | "techpart" | "scrinning";
+      stage: 'conversation' | 'livecoding' | 'techpart' | 'scrinning';
       /**
        * @description Уникальный никнэйм пользователя
        * @example Лютый
@@ -248,7 +247,7 @@ export interface components {
        */
       pageSize: number;
       /** @description Список статей */
-      interviews: components["schemas"]["Interview"][];
+      interviews: components['schemas']['Interview'][];
     };
     DeleteInterviewsDto: {
       /**
@@ -274,7 +273,7 @@ export interface components {
        *   "successful"
        * ]
        */
-      status?: ("processing" | "failure" | "successful")[];
+      status?: ('processing' | 'failure' | 'successful')[];
       /**
        * @description Грейд требуемый компанией. Может быть несколько значений
        * @example [
@@ -283,7 +282,7 @@ export interface components {
        *   "senior"
        * ]
        */
-      grade?: ("junior" | "senior" | "middle")[];
+      grade?: ('junior' | 'senior' | 'middle')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -292,7 +291,7 @@ export interface components {
        *   "techpart"
        * ]
        */
-      stage?: ("conversation" | "livecoding" | "techpart" | "scrinning")[];
+      stage?: ('conversation' | 'livecoding' | 'techpart' | 'scrinning')[];
       /**
        * @description Заголовок статьи
        * @example Моё собеседование в газпром, это было ужасно
@@ -350,7 +349,7 @@ export interface components {
     };
     GetCompaniesDto: {
       /** @description Список компаний */
-      companies: components["schemas"]["Company"][];
+      companies: components['schemas']['Company'][];
     };
   };
   responses: never;
@@ -365,13 +364,12 @@ export type $defs = Record<string, never>;
 export type external = Record<string, never>;
 
 export interface operations {
-
   /** Получить всех пользователей */
   UsersController_getAll: {
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"][];
+          'application/json': components['schemas']['User'][];
         };
       };
     };
@@ -380,13 +378,13 @@ export interface operations {
   UsersController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
       200: {
         content: {
-          "application/json": components["schemas"]["User"];
+          'application/json': components['schemas']['User'];
         };
       };
     };
@@ -395,7 +393,7 @@ export interface operations {
   UsersController_addRole: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["AddRoleDto"];
+        'application/json': components['schemas']['AddRoleDto'];
       };
     };
     responses: {
@@ -408,7 +406,7 @@ export interface operations {
   UsersController_ban: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["BanUserDto"];
+        'application/json': components['schemas']['BanUserDto'];
       };
     };
     responses: {
@@ -420,7 +418,7 @@ export interface operations {
   RolesController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateRoleDto"];
+        'application/json': components['schemas']['CreateRoleDto'];
       };
     };
     responses: {
@@ -444,7 +442,7 @@ export interface operations {
   AuthController_login: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
@@ -456,7 +454,7 @@ export interface operations {
   AuthController_registration: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateUserDto"];
+        'application/json': components['schemas']['CreateUserDto'];
       };
     };
     responses: {
@@ -475,7 +473,7 @@ export interface operations {
   PostsController_createPost: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreatePostDto"];
+        'application/json': components['schemas']['CreatePostDto'];
       };
     };
     responses: {
@@ -504,7 +502,7 @@ export interface operations {
       /** @description Получить и отфильтровать список */
       200: {
         content: {
-          "application/json": components["schemas"]["GetInterviewsDto"];
+          'application/json': components['schemas']['GetInterviewsDto'];
         };
       };
     };
@@ -515,7 +513,7 @@ export interface operations {
       /** @description Обновить статью по Id. */
       200: {
         content: {
-          "application/json": components["schemas"]["PutInterviewsDto"];
+          'application/json': components['schemas']['PutInterviewsDto'];
         };
       };
     };
@@ -529,14 +527,14 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateInterviewDto"];
+        'application/json': components['schemas']['CreateInterviewDto'];
       };
     };
     responses: {
       /** @description Статья создана */
       200: {
         content: {
-          "application/json": components["schemas"]["Interview"];
+          'application/json': components['schemas']['Interview'];
         };
       };
     };
@@ -545,14 +543,14 @@ export interface operations {
   InterviewsController_delete: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["DeleteInterviewsDto"];
+        'application/json': components['schemas']['DeleteInterviewsDto'];
       };
     };
     responses: {
       /** @description Удалить статью */
       200: {
         content: {
-          "application/json": components["schemas"]["DeleteInterviewsDto"];
+          'application/json': components['schemas']['DeleteInterviewsDto'];
         };
       };
     };
@@ -568,7 +566,7 @@ export interface operations {
       /** @description Получить список компаний */
       200: {
         content: {
-          "application/json": components["schemas"]["GetCompaniesDto"];
+          'application/json': components['schemas']['GetCompaniesDto'];
         };
       };
     };
@@ -577,14 +575,14 @@ export interface operations {
   CompaniesController_create: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["CreateCompanyDto"];
+        'application/json': components['schemas']['CreateCompanyDto'];
       };
     };
     responses: {
       /** @description Компания создана */
       200: {
         content: {
-          "application/json": components["schemas"]["Company"];
+          'application/json': components['schemas']['Company'];
         };
       };
     };

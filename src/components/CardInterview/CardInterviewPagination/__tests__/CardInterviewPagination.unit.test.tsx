@@ -1,5 +1,6 @@
-import CardInterviewPagination from '@components/CardInterview/CardInterviewPagination/CardInterviewPagination';
 import '@testing-library/jest-dom';
+
+import CardInterviewPagination from '@components/CardInterview/CardInterviewPagination/CardInterviewPagination';
 import { render, screen } from '@testing-library/react';
 
 describe('CardInterviewPagination', () => {
@@ -14,8 +15,10 @@ describe('CardInterviewPagination', () => {
         handleChangePage={() => {}}
       />,
     );
-    expect(component.container.querySelector('[aria-labelledby="pagination-count"]')).toBeInTheDocument();
-    expect(screen.getByText(/Элементов на страницу:/i)).toBeInTheDocument()
+    expect(
+      component.container.querySelector('[aria-labelledby="pagination-count"]'),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Элементов на страницу:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/pagination/i)).toBeInTheDocument();
     expect(component).toMatchSnapshot();
   });

@@ -1,8 +1,8 @@
-import { useCallback } from 'react';
 import CastomForm from '@components/castomForm';
 import { Box, Button, Typography } from '@mui/material';
 import { InterviewsParams } from '@network/models/interviews.model';
 import { useQueryClient } from '@tanstack/react-query';
+import { useCallback } from 'react';
 
 import { filterDefs } from '../confDefs/confDefs';
 
@@ -15,6 +15,7 @@ const CardInterviewFilter = ({ filter, setFilter }: Props) => {
   const queryClient = useQueryClient();
   const handleSubmit = useCallback(
     (item: InterviewsParams) => {
+      setFilter(item);
       setFilter(item);
     },
     [setFilter],

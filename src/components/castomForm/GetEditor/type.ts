@@ -1,5 +1,5 @@
-import { FieldValues, Path, PathValue } from 'react-hook-form';
 import { SelectVariants } from '@mui/material';
+import { FieldValues, Path, PathValue } from 'react-hook-form';
 
 export type TypeForm = 'text' | 'password' | 'select';
 export type FormItemBase<FormType extends FieldValues> = {

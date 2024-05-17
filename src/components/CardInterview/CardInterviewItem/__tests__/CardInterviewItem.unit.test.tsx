@@ -1,18 +1,19 @@
+import '@testing-library/jest-dom';
+
 import CardInterviewItem, {
   Props,
 } from '@components/CardInterview/CardInterviewItem/CardInterviewItem';
 import { fakeInterviewItem } from '@components/CardInterview/testsMock.data';
-import '@testing-library/jest-dom';
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Тестирование CardInterviewItem', () => {
   let mockPropsForCardItem = {} as Props;
 
   beforeEach(() => {
-    mockPropsForCardItem = fakeInterviewItem
+    mockPropsForCardItem = fakeInterviewItem;
   });
- 
+
   it('рендеринг компонента с полными данными', () => {
     render(<CardInterviewItem {...mockPropsForCardItem} />);
     expect(screen.getByText(mockPropsForCardItem.companyName)).toBeInTheDocument();
@@ -28,10 +29,9 @@ describe('Тестирование CardInterviewItem', () => {
   });
   it('рендеринг компонента с отсутствующим articleDescription', () => {
     //@ts-ignore
-    mockPropsForCardItem.articleDescription = null
+    mockPropsForCardItem.articleDescription = null;
     render(<CardInterviewItem {...mockPropsForCardItem} />);
     expect(screen.queryByText('Я ему одно, он мне другое, так и живём')).toBeNull();
-    
   });
   it('снэпшот с полными данными', () => {
     const card = render(<CardInterviewItem {...mockPropsForCardItem} />);
@@ -39,7 +39,7 @@ describe('Тестирование CardInterviewItem', () => {
   });
   it('снэпшот с отсутствующим articleDescription', () => {
     //@ts-ignore
-    mockPropsForCardItem.articleDescription = null
+    mockPropsForCardItem.articleDescription = null;
     const card = render(<CardInterviewItem {...mockPropsForCardItem} />);
     expect(card).toMatchSnapshot();
   });
@@ -49,12 +49,8 @@ describe('Тестирование CardInterviewItem', () => {
         <CardInterviewItem {...mockPropsForCardItem} />
       </MemoryRouter>,
     );
-    const link = screen.getByRole('link', { name: /подробнее/i })
+    const link = screen.getByRole('link', { name: /подробнее/i });
 
-    expect(link).toHaveAttribute(
-      'href',
-      `/interwiev/${mockPropsForCardItem.id}`,
-    );
+    expect(link).toHaveAttribute('href', `/interwiev/${mockPropsForCardItem.id}`);
   });
-  
 });

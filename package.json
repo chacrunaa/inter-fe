@@ -10,7 +10,9 @@
     "lint:fix": "eslint --fix --config ./.eslintrc.cjs src --ext .ts,.tsx,.cjs",
     "preview": "vite preview",
     "test": "jest --coverage --verbose",
-    "api-types": "npx dotenv-cli -e .env -- openapi-typescript \"http://localhost:5000/api/docs-json\" --output src/types/generated-api.ts"
+    "api-types": "npx dotenv-cli -e .env -- openapi-typescript \"http://localhost:5000/api/docs-json\" --output src/types/generated-api.ts",
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "-": "^0.0.1",
@@ -58,6 +60,8 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.11.20",
     "@types/react": "^18.2.56",
@@ -68,8 +72,25 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
     "openapi-typescript": "^6.7.5",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write",
+      "jest --bail --findRelatedTests"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ]
   }
 }

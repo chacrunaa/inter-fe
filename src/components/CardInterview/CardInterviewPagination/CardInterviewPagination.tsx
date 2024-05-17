@@ -45,7 +45,11 @@ const CardInterviewPagination = ({
       >
         <Typography variant="body1">Элементов на страницу:</Typography>
         <FormControl>
-          <Select value={pageSize.toString()} onChange={handleChangeRowsPerPage} id='pagination-count'>
+          <Select
+            value={pageSize.toString()}
+            onChange={handleChangeRowsPerPage}
+            id="pagination-count"
+          >
             {paginationArrayRowsPerPage.map(item => (
               <MenuItem key={item} value={item}>
                 {item}

@@ -1,2 +1,2 @@
-import CastomForm from './CastomForm'
-export default CastomForm
+import CastomForm from './CastomForm';
+export default CastomForm;

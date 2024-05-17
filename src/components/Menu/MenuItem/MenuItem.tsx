@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { MenuDataType } from '@components/Menu/type';
+import { Link } from 'react-router-dom';
 
 import MenuList from '../MenuList';
 
