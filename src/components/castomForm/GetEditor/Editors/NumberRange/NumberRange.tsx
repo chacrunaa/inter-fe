@@ -17,13 +17,13 @@ const NumberRange = <FormType extends FieldValues>({
             <Controller
                 name={minOfferPath}
                 control={control}
-                render={({ field: { value: minValue, onChange: onMinChange } }) => (
+                render={({ field: { value: minValue = 0, onChange: onMinChange } }) => (
                     <Controller
                         name={maxOfferPath}
                         control={control}
-                        render={({ field: { value: maxValue, onChange: onMaxChange } }) => (
+                        render={({ field: { value: maxValue = 500000, onChange: onMaxChange } }) => (
                             <Slider
-                                value={[minValue || 0, maxValue || 500000]}
+                                value={[minValue, maxValue]}
                                 onChange={(event, newValue) => {
                                     const [newMin, newMax] = newValue as number[];
                                     onMinChange(newMin);

@@ -21,6 +21,8 @@ const CreateInterview = () => {
     const { ...rest } = formData;
     const processedData = {
       ...rest,
+      minoffer: Number(rest.minoffer) || 0,
+      maxoffer: Number(rest.maxoffer) || 500000,
     };
     authMutation.mutate(processedData);
   };
