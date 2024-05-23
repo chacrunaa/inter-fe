@@ -14,6 +14,7 @@ const Text = <FormType extends FieldValues>({ item }: ControlledItemProps<FormTy
       type="text"
       {...rest}
       label={item.header}
+      className={item.className}
       variant={item?.variant || 'filled'}
     />
   );

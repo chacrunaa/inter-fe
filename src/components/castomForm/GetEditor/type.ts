@@ -1,7 +1,7 @@
 import { SelectVariants } from '@mui/material';
 import { FieldValues, Path, PathValue } from 'react-hook-form';
 
-export type TypeForm = 'text' | 'password' | 'select';
+export type TypeForm = 'text' | 'password' | 'select' | 'numberRange';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
   type: TypeForm;
