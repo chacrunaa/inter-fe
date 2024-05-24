@@ -1,5 +1,7 @@
-export const interviewDefs: any[] = [
-  { id: 'companyName', header: 'Компания', type: 'text', className: 'p-3' },
+import { FormItem } from '@components/castomForm/GetEditor/type';
+
+export const interviewDefs: FormItem<any>[] = [
+  { id: 'companyName', header: 'Компания', type: 'text' },
   {
     id: 'stage',
     header: 'Этап ревью',
@@ -12,7 +14,22 @@ export const interviewDefs: any[] = [
       { value: 'scrinning', label: 'Этап с HR' },
     ],
   },
-  { id: 'offer', header: 'Оффер', type: 'numberRange' },
+  {
+    id: 'offer',
+    header: 'Оффер',
+    type: 'numberRange',
+    isDoubleValue: true,
+    marks: [
+      {
+        value: 0,
+        label: `От `,
+      },
+      {
+        value: 500000,
+        label: `До`,
+      },
+    ],
+  },
   {
     id: 'status',
     header: 'Статус собеседования',
@@ -35,16 +52,4 @@ export const interviewDefs: any[] = [
   },
   { id: 'articleTitle', header: 'Заголовок статьи', type: 'text' },
   { id: 'articleDescription', header: 'Описание статьи', type: 'text' },
-  {
-    id: 'minoffer',
-    header: 'Минимальный оффер',
-    type: 'hidden',
-    className: 'hidden-text',
-  },
-  {
-    id: 'maxoffer',
-    header: 'Максимальный оффер',
-    type: 'hidden',
-    className: 'hidden-text',
-  },
 ];

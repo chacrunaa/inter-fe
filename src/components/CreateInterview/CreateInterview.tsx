@@ -1,5 +1,3 @@
-import './CreateInterview.scss';
-
 import { interviewDefs } from '@components/CardInterview/confDefs/interviewDefs';
 import CastomForm from '@components/castomForm';
 import { HOME_PATH } from '@constatns/pathPage';
@@ -7,6 +5,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { postItem } from '@network/api/api';
 import { useAuthStore } from '@stores/useGlobalStore';
 import { useMutation } from '@tanstack/react-query';
+import { cleanedObject } from '@utils/utils';
 import { Link } from 'react-router-dom';
 
 const CreateInterview = () => {
@@ -18,44 +17,35 @@ const CreateInterview = () => {
   });
 
   const handleSubmit = (formData: any) => {
-    const { ...rest } = formData;
+    const { offer, ...data } = formData;
+
     const processedData = {
-      ...rest,
-      minoffer: Number(rest.minoffer) || 0,
-      maxoffer: Number(rest.maxoffer) || 500000,
+      ...data,
+      minoffer: Number(offer[0]) || 0,
+      maxoffer: Number(offer[1]) || 500000,
     };
-    authMutation.mutate(processedData);
+    authMutation.mutate(cleanedObject(processedData));
   };
 
   return (
     <CastomForm>
       <CastomForm.Form onSubmitForm={handleSubmit}>
-        <Box className="interview-form">
-          <Box className="form-header">
-            <Link to={HOME_PATH} className="back-link">
-              <Button type="button" className="back-button">
-                &larr;
-              </Button>
+        <Box>
+          <Box>
+            <Link to={HOME_PATH}>
+              <Button type="button">&larr;</Button>
             </Link>
-            <Typography variant="subtitle1" className="form-title">
-              Как правильно заполнять форму?
-            </Typography>
+            <Typography variant="subtitle1">Как правильно заполнять форму?</Typography>
           </Box>
           <Box sx={{ display: 'grid', gap: '10px' }}>
             <CastomForm.Items items={interviewDefs} />
           </Box>
-          <Box className="form-actions">
-            <Link to={HOME_PATH} className="back-link">
-              <Button type="button" className="cancel-button">
-                Отмена
-              </Button>
+          <Box>
+            <Link to={HOME_PATH}>
+              <Button type="button">Отмена</Button>
             </Link>
-            <Button type="button" className="draft-button">
-              Сохранить черновик
-            </Button>
-            <Button type="submit" className="create-button">
-              Создать
-            </Button>
+            <Button type="button">Сохранить черновик</Button>
+            <Button type="submit">Создать</Button>
           </Box>
         </Box>
       </CastomForm.Form>

@@ -1,46 +1,46 @@
 import { Box, Slider } from '@mui/material';
-import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
+import { useCallback } from 'react';
+import { Controller, FieldValues, useFormContext } from 'react-hook-form';
 
 import { ControlledItemProps } from '../../type';
 
 const NumberRange = <FormType extends FieldValues>({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    item,
+  item,
 }: ControlledItemProps<FormType>) => {
-    const { control, setValue } = useFormContext<FormType>();
+  const { control, setValue, getValues } = useFormContext<FormType>();
+  const {
+    minValue = 0,
+    maxValue = 500000,
+    isDoubleValue,
+    valueLabelDisplay = 'auto',
+    marks,
+  } = item;
 
-    const minOfferPath: Path<FormType> = 'minoffer' as Path<FormType>;
-    const maxOfferPath: Path<FormType> = 'maxoffer' as Path<FormType>;
+  const value = getValues(item.id);
 
-    return (
-        <Box>
-            <Controller
-                name={minOfferPath}
-                control={control}
-                render={({ field: { value: minValue = 0, onChange: onMinChange } }) => (
-                    <Controller
-                        name={maxOfferPath}
-                        control={control}
-                        render={({ field: { value: maxValue = 500000, onChange: onMaxChange } }) => (
-                            <Slider
-                                value={[minValue, maxValue]}
-                                onChange={(event, newValue) => {
-                                    const [newMin, newMax] = newValue as number[];
-                                    onMinChange(newMin);
-                                    onMaxChange(newMax);
-                                    setValue(minOfferPath, newMin as any);
-                                    setValue(maxOfferPath, newMax as any);
-                                }}
-                                valueLabelDisplay="auto"
-                                min={0}
-                                max={500000}
-                            />
-                        )}
-                    />
-                )}
-            />
-        </Box>
-    );
+  const saveValue = useCallback((value: any) => setValue(item.id, value), []);
+  if (!isDoubleValue) {
+    saveValue(value || 0);
+  } else {
+    saveValue(value || [0, 0]);
+  }
+  return (
+    <Box>
+      <Controller
+        name={item.id}
+        control={control}
+        render={({ field }) => (
+          <Slider
+            {...field}
+            valueLabelDisplay={valueLabelDisplay}
+            min={minValue}
+            max={maxValue}
+            marks={marks}
+          />
+        )}
+      />
+    </Box>
+  );
 };
 
 export default NumberRange;
