@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix --config ./.eslintrc.cjs src --ext .ts,.tsx,.cjs",
     "preview": "vite preview",
     "test": "jest --coverage --verbose",
-    "api-types": "npx dotenv-cli -e .env -- openapi-typescript \"http://localhost:5000/api/docs-json\" --output src/types/generated-api.ts",
+    "api-types": "npx dotenv-cli -e .env -- openapi-typescript \"http://localhost:7000/api/docs-json\" --output src/types/generated-api.ts",
     "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
@@ -50,6 +50,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^6.22.1",
     "react-select": "^5.8.0",
     "sass": "^1.71.1",

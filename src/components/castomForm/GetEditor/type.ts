@@ -1,7 +1,8 @@
 import { SelectVariants, SliderOwnProps } from '@mui/material';
 import { FieldValues, Path, PathValue } from 'react-hook-form';
+import { ReactQuillProps } from 'react-quill';
 
-export type TypeForm = 'text' | 'password' | 'select' | 'numberRange';
+export type TypeForm = 'text' | 'password' | 'select' | 'numberRange' | 'reachEditor';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
   type: TypeForm;
@@ -27,10 +28,14 @@ export type FormItemNumberRange<FormType extends FieldValues> = {
   valueLabelDisplay?: SliderOwnProps['valueLabelDisplay'];
   marks?: SliderOwnProps['marks'];
 } & FormItemBase<FormType>;
+export type FormItemRichText<FormType extends FieldValues> = {
+  modules?: ReactQuillProps['modules'];
+} & FormItemBase<FormType>;
 export type PermissionsType = 'read' | 'write';
 export type FormItem<FormType extends FieldValues> = FormItemBase<FormType> &
   FormItemSelect<FormType> &
-  FormItemNumberRange<FormType>;
+  FormItemNumberRange<FormType> &
+  FormItemRichText<FormType>;
 export type ControlledItemProps<FormType extends FieldValues> = {
   item: FormItem<FormType>;
   permissions: PermissionsType;

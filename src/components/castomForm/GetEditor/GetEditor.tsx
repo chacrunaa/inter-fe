@@ -15,6 +15,9 @@ const controllerEditor: Record<
   numberRange: lazy(
     () => import('@components/castomForm/GetEditor/Editors/NumberRange/index'),
   ),
+  reachEditor: lazy(
+    () => import('@components/castomForm/GetEditor/Editors/ReachEditor/index'),
+  ),
 };
 
 const GetEditor = <FormType extends FieldValues>(

@@ -51,5 +51,5 @@ export const interviewDefs: FormItem<any>[] = [
     ],
   },
   { id: 'articleTitle', header: 'Заголовок статьи', type: 'text' },
-  { id: 'articleDescription', header: 'Описание статьи', type: 'text' },
+  { id: 'articleDescription', header: 'Описание статьи', type: 'reachEditor' },
 ];
