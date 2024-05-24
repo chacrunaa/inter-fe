@@ -2,7 +2,7 @@ import { SelectVariants } from '@mui/material';
 import { FieldValues, Path, PathValue } from 'react-hook-form';
 import { ReactQuillProps } from 'react-quill';
 
-export type TypeForm = 'text' | 'password' | 'select' | 'reachEdior';
+export type TypeForm = 'text' | 'password' | 'select' | 'reachEditor';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
   type: TypeForm;

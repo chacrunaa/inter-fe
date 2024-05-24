@@ -1,5 +1,6 @@
 import 'react-quill/dist/quill.snow.css';
 
+import { useCallback } from 'react';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 
@@ -19,16 +20,16 @@ const modules = {
   ],
 };
 
-const ReachEdior = <FormType extends FieldValues>({
+const ReachEditor = <FormType extends FieldValues>({
   item,
 }: ControlledItemProps<FormType>) => {
   const { register, getValues, setValue } = useFormContext<FormType>();
   const getValue = getValues(item.id);
   const saveValue = (value: any) => setValue(item.id, value);
   const { ref: formRef } = register(item.id);
-  const handleChange = (value: string) => {
+  const handleChange = useCallback((value: string) => {
     saveValue(value);
-  };
+  }, []);
 
   return (
     <ReactQuill
@@ -41,4 +42,4 @@ const ReachEdior = <FormType extends FieldValues>({
   );
 };
 
-export default ReachEdior;
+export default ReachEditor;
