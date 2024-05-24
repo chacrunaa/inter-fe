@@ -33,7 +33,7 @@ const CardInterviewFilter = ({ filter, setFilter }: Props) => {
   return (
     <CastomForm defaultValues={filter}>
       <CastomForm.Form onSubmitForm={handleSubmit} onResetForm={handleClear}>
-        <Typography variant="h2">Фильтрация ПРОВЕРКА JENKINS</Typography>
+        <Typography variant="h2">Фильтрация</Typography>
         <Box sx={{ display: 'grid', gap: 2, gridTemplateColumns: '8fr 1fr 1fr' }}>
           <Box sx={{ display: 'grid', gap: 2, gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
             <CastomForm.Items items={filterDefs} />
@@ -45,6 +45,7 @@ const CardInterviewFilter = ({ filter, setFilter }: Props) => {
             Сбросить
           </Button>
         </Box>
+        pipline fe
       </CastomForm.Form>
     </CastomForm>
   );
