@@ -3,9 +3,9 @@ import CastomForm from '@components/castomForm';
 import { HOME_PATH } from '@constatns/pathPage';
 import { Box, Button, Typography } from '@mui/material';
 import { postItem } from '@network/api/api';
+import { AllEntityesParamsDto } from '@network/types';
 import { useAuthStore } from '@stores/useGlobalStore';
 import { useMutation } from '@tanstack/react-query';
-import { cleanedObject } from '@utils/utils';
 import { Link } from 'react-router-dom';
 
 const CreateInterview = () => {
@@ -13,9 +13,9 @@ const CreateInterview = () => {
   const object = 'interviews';
 
   const authMutation = useMutation({
-    mutationFn: (formData: any) => postItem(object, formData, token),
+    mutationFn: (formData: AllEntityesParamsDto['interviews']) =>
+      postItem(object, formData, token),
   });
-
   const handleSubmit = (formData: any) => {
     const { offer, ...data } = formData;
 
@@ -24,7 +24,7 @@ const CreateInterview = () => {
       minoffer: Number(offer[0]) || 0,
       maxoffer: Number(offer[1]) || 500000,
     };
-    authMutation.mutate(cleanedObject(processedData));
+    authMutation.mutate(processedData);
   };
 
   return (
