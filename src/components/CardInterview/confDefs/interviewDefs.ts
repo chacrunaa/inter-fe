@@ -1,6 +1,10 @@
 import { FormItem } from '@components/castomForm/GetEditor/type';
 
-export const interviewDefs: FormItem<any>[] = [
+export const interviewDefs = ({
+  mutationAfterChange,
+}: {
+  mutationAfterChange: (item: FileList) => void;
+}): FormItem<any>[] => [
   { id: 'companyName', header: 'Компания', type: 'text' },
   { id: 'linkjob', header: 'Ссылка на объявление', type: 'link' },
   {
@@ -64,4 +68,23 @@ export const interviewDefs: FormItem<any>[] = [
   },
   { id: 'articleTitle', header: 'Заголовок статьи', type: 'text' },
   { id: 'articleDescription', header: 'Описание статьи', type: 'reachEditor' },
+  {
+    id: 'uploadButton',
+    header: 'Выбрать файлы',
+    type: 'uploadButton',
+    isMulti: true,
+    onChange: mutationAfterChange,
+    editorProps: {
+      buttonProps: {
+        variant: 'outlined',
+      },
+      uploadButtonProps: {
+        variant: 'contained',
+      },
+      resetButtonProps: {
+        variant: 'contained',
+        color: 'error',
+      },
+    },
+  },
 ];

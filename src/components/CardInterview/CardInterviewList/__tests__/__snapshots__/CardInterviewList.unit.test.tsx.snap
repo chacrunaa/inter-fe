@@ -86,11 +86,15 @@ exports[`Тестирование CardInterviewList cнэпшот с данны�
                 >
                   Заголовок статьи
                 </h6>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                <div
+                  class="ql-snow MuiBox-root css-79h8s0"
                 >
-                  Я ему одно, он мне другое, так и живём
-                </p>
+                  <div
+                    class="ql-editor MuiBox-root css-0"
+                  >
+                    Я ему одно, он мне другое, так и живём
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -199,11 +203,15 @@ exports[`Тестирование CardInterviewList cнэпшот с данны�
               >
                 Заголовок статьи
               </h6>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+              <div
+                class="ql-snow MuiBox-root css-79h8s0"
               >
-                Я ему одно, он мне другое, так и живём
-              </p>
+                <div
+                  class="ql-editor MuiBox-root css-0"
+                >
+                  Я ему одно, он мне другое, так и живём
+                </div>
+              </div>
             </div>
           </div>
         </div>

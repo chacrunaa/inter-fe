@@ -14,7 +14,7 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
         <h2
           class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
         >
-          Фильтрация ПРОВЕРКА JENKINS
+          Фильтрация
         </h2>
         <div
           class="MuiBox-root css-s9m4ir"
@@ -218,6 +218,7 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
             />
           </button>
         </div>
+        pipline fe
       </form>
       <div
         class="MuiBox-root css-1i43dhb"
@@ -300,11 +301,15 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
                 >
                   Заголовок статьи
                 </h6>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                <div
+                  class="ql-snow MuiBox-root css-79h8s0"
                 >
-                  Я ему одно, он мне другое, так и живём
-                </p>
+                  <div
+                    class="ql-editor MuiBox-root css-0"
+                  >
+                    Я ему одно, он мне другое, так и живём
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -406,11 +411,15 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
                 >
                   Заголовок статьи
                 </h6>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                <div
+                  class="ql-snow MuiBox-root css-79h8s0"
                 >
-                  Я ему одно, он мне другое, так и живём
-                </p>
+                  <div
+                    class="ql-editor MuiBox-root css-0"
+                  >
+                    Я ему одно, он мне другое, так и живём
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -577,7 +586,7 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
       <h2
         class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
       >
-        Фильтрация ПРОВЕРКА JENKINS
+        Фильтрация
       </h2>
       <div
         class="MuiBox-root css-s9m4ir"
@@ -781,6 +790,7 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
           />
         </button>
       </div>
+      pipline fe
     </form>
     <div
       class="MuiBox-root css-1i43dhb"
@@ -863,11 +873,15 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
               >
                 Заголовок статьи
               </h6>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+              <div
+                class="ql-snow MuiBox-root css-79h8s0"
               >
-                Я ему одно, он мне другое, так и живём
-              </p>
+                <div
+                  class="ql-editor MuiBox-root css-0"
+                >
+                  Я ему одно, он мне другое, так и живём
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -969,11 +983,15 @@ exports[`CardInterview Блок с фильтрами, списком и паг�
               >
                 Заголовок статьи
               </h6>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+              <div
+                class="ql-snow MuiBox-root css-79h8s0"
               >
-                Я ему одно, он мне другое, так и живём
-              </p>
+                <div
+                  class="ql-editor MuiBox-root css-0"
+                >
+                  Я ему одно, он мне другое, так и живём
+                </div>
+              </div>
             </div>
           </div>
         </div>

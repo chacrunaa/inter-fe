@@ -14,7 +14,7 @@ exports[`СardInterviewFilters кнопки поиска и сброса 1`] = `
         <h2
           class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
         >
-          Фильтрация ПРОВЕРКА JENKINS
+          Фильтрация
         </h2>
         <div
           class="MuiBox-root css-s9m4ir"
@@ -218,6 +218,7 @@ exports[`СardInterviewFilters кнопки поиска и сброса 1`] = `
             />
           </button>
         </div>
+        pipline fe
       </form>
     </div>
   </body>,
@@ -231,7 +232,7 @@ exports[`СardInterviewFilters кнопки поиска и сброса 1`] = `
       <h2
         class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
       >
-        Фильтрация ПРОВЕРКА JENKINS
+        Фильтрация
       </h2>
       <div
         class="MuiBox-root css-s9m4ir"
@@ -435,6 +436,7 @@ exports[`СardInterviewFilters кнопки поиска и сброса 1`] = `
           />
         </button>
       </div>
+      pipline fe
     </form>
   </div>,
   "debug": [Function],

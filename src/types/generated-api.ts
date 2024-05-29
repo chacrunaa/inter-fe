@@ -34,6 +34,18 @@ export interface paths {
     get: operations['PostsController_getAllPosts'];
     post: operations['PostsController_createPost'];
   };
+  '/files/upload': {
+    /** Загрузка видео файлов */
+    post: operations['FilesController_uploadFiles'];
+  };
+  '/files/{id}': {
+    /** Получить информацию о файле по ID */
+    get: operations['FilesController_getFileById'];
+  };
+  '/files': {
+    /** Получить список всех файлов */
+    get: operations['FilesController_getAllFiles'];
+  };
   '/interviews': {
     /** Получение и фильтрация статей */
     get: operations['InterviewsController_findAll'];
@@ -103,17 +115,18 @@ export interface components {
     BanUserDto: Record<string, never>;
     CreateRoleDto: Record<string, never>;
     CreatePostDto: Record<string, never>;
+    CreateFileDto: {
+      files: Record<string, never>[];
+      /** @description ID статьи */
+      articleId: string;
+    };
+    File: Record<string, never>;
     CreateInterviewDto: {
       /**
        * @description Название компании
        * @example Газпром
        */
       companyName: string;
-      /**
-       * @description Ссылка на объявление
-       * @example Это объявление
-       */
-      linkjob: string;
       /**
        * @description Финальный статус взаимодействия с компанией
        * @example [
@@ -130,15 +143,6 @@ export interface components {
        * ]
        */
       grade: ('junior' | 'senior' | 'middle')[];
-      /**
-       * @description Формат работы
-       * @example [
-       *   "hybrid",
-       *   "remote",
-       *   "office"
-       * ]
-       */
-      formatjob: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -168,13 +172,27 @@ export interface components {
        * @example 20000
        */
       maxoffer: number;
+      /**
+       * @description формат работы
+       * @example [
+       *   "office",
+       *   "remote",
+       *   "hybrid"
+       * ]
+       */
+      formatjob: ('office' | 'remote' | 'hybrid')[];
+      /**
+       * @description Ссылка на вакансию
+       * @example https://hh.ru/vacancy/98863179
+       */
+      linkjob: string;
     };
     Interview: {
       /**
        * @description Уникальный идентификатор
        * @example 1
        */
-      id: number;
+      id: string;
       /**
        * @description Название компании
        * @example Газпром
@@ -183,11 +201,6 @@ export interface components {
       /**
        * @description Заголовок названия собеседования
        * @example Супер собеседование
-       */
-      linkjob: string;
-      /**
-       * @description Ссылка на объявление
-       * @example Это объявление
        */
       articleTitle: string;
       /**
@@ -213,15 +226,6 @@ export interface components {
        * @enum {string}
        */
       grade: 'junior' | 'senior' | 'middle';
-      /**
-       * @description Формат работы
-       * @example [
-       *   "hybrid",
-       *   "remote",
-       *   "office"
-       * ]
-       */
-      formatjob: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -252,6 +256,21 @@ export interface components {
        * @example от
        */
       prefix: string;
+      /**
+       * @description Формат работы
+       * @example [
+       *   "hybrid",
+       *   "remote",
+       *   "office"
+       * ]
+       * @enum {string}
+       */
+      formatjob: 'office' | 'remote' | 'hybrid';
+      /**
+       * @description Ссылка на вакансию
+       * @example https://hh.ru/vacancy/98863179
+       */
+      linkjob: string;
     };
     GetInterviewsDto: {
       /**
@@ -296,11 +315,6 @@ export interface components {
        */
       companyName?: string;
       /**
-       * @description Ссылка на объявление
-       * @example Это объявление
-       */
-      linkjob?: string;
-      /**
        * @description Финальный статус взаимодействия с компанией
        * @example [
        *   "successful"
@@ -316,15 +330,6 @@ export interface components {
        * ]
        */
       grade?: ('junior' | 'senior' | 'middle')[];
-      /**
-       * @description Формат работы
-       * @example [
-       *   "hybrid",
-       *   "remote",
-       *   "office"
-       * ]
-       */
-      formatjob?: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -521,6 +526,58 @@ export interface operations {
     responses: {
       201: {
         content: never;
+      };
+    };
+  };
+  /** Загрузка видео файлов */
+  FilesController_uploadFiles: {
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateFileDto'];
+      };
+    };
+    responses: {
+      /** @description Файлы успешно загружены */
+      201: {
+        content: {
+          'application/json': components['schemas']['File'][];
+        };
+      };
+      /** @description Некорректный запрос */
+      400: {
+        content: never;
+      };
+    };
+  };
+  /** Получить информацию о файле по ID */
+  FilesController_getFileById: {
+    parameters: {
+      path: {
+        /** @description ID файла */
+        id: number;
+      };
+    };
+    responses: {
+      /** @description Информация о файле */
+      200: {
+        content: {
+          'application/json': components['schemas']['File'];
+        };
+      };
+      /** @description Файл не найден */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /** Получить список всех файлов */
+  FilesController_getAllFiles: {
+    responses: {
+      /** @description Список файлов */
+      200: {
+        content: {
+          'application/json': components['schemas']['File'][];
+        };
       };
     };
   };
