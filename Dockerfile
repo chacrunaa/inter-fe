@@ -8,8 +8,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn
-
 EXPOSE 5137 
 
 CMD ["yarn", "dev", "--host", "0.0.0.0"]
