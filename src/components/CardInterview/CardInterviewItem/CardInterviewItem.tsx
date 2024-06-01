@@ -3,6 +3,7 @@ import {
   generateColorChips,
 } from '@components/CardInterview/CardInterviewItem/utils/cardInterviewItem.utils';
 import { formatOffer } from '@components/CardInterview/utils/utils';
+import EditorShow from '@components/castomForm/GetEditor/Editors/ReachEditor/EditorShow';
 import {
   Box,
   Button,
@@ -103,10 +104,7 @@ const CardInterviewItem = (props: Props) => {
             <Typography variant="h6" color="text.secondary">
               {articleTitle}
             </Typography>
-
-            <Typography variant="body2" color="text.secondary">
-              {articleDescription}
-            </Typography>
+            <EditorShow articleDescription={articleDescription} />
           </Box>
         </Box>
       </CardContent>
