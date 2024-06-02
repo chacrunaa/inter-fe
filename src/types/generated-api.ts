@@ -110,6 +110,11 @@ export interface components {
        */
       companyName: string;
       /**
+       * @description Ссылка на объявление
+       * @example Это объявление
+       */
+      linkjob: string;
+      /**
        * @description Финальный статус взаимодействия с компанией
        * @example [
        *   "successful"
@@ -125,6 +130,15 @@ export interface components {
        * ]
        */
       grade: ('junior' | 'senior' | 'middle')[];
+      /**
+       * @description Формат работы
+       * @example [
+       *   "hybrid",
+       *   "remote",
+       *   "office"
+       * ]
+       */
+      formatjob: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -170,6 +184,11 @@ export interface components {
        * @description Заголовок названия собеседования
        * @example Супер собеседование
        */
+      linkjob: string;
+      /**
+       * @description Ссылка на объявление
+       * @example Это объявление
+       */
       articleTitle: string;
       /**
        * @description Описание названия собеседования
@@ -194,6 +213,15 @@ export interface components {
        * @enum {string}
        */
       grade: 'junior' | 'senior' | 'middle';
+      /**
+       * @description Формат работы
+       * @example [
+       *   "hybrid",
+       *   "remote",
+       *   "office"
+       * ]
+       */
+      formatjob: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [
@@ -268,6 +296,11 @@ export interface components {
        */
       companyName?: string;
       /**
+       * @description Ссылка на объявление
+       * @example Это объявление
+       */
+      linkjob?: string;
+      /**
        * @description Финальный статус взаимодействия с компанией
        * @example [
        *   "successful"
@@ -283,6 +316,15 @@ export interface components {
        * ]
        */
       grade?: ('junior' | 'senior' | 'middle')[];
+      /**
+       * @description Формат работы
+       * @example [
+       *   "hybrid",
+       *   "remote",
+       *   "office"
+       * ]
+       */
+      formatjob?: ('hybrid' | 'remote' | 'office')[];
       /**
        * @description Этап взаимодействия с компанией
        * @example [

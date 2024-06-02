@@ -18,6 +18,7 @@ const controllerEditor: Record<
   reachEditor: lazy(
     () => import('@components/castomForm/GetEditor/Editors/ReachEditor/index'),
   ),
+  link: lazy(() => import('@components/castomForm/GetEditor/Editors/Link/index')),
 };
 
 const GetEditor = <FormType extends FieldValues>(

@@ -9,6 +9,3 @@ export type InterviewAllItem = Required<schemas['Interview']>;
 // =============================== Request params ==================================
 export type InterviewsParams =
   operations['InterviewsController_findAll']['parameters']['query'];
-
-export type InterviewsCreateParams =
-  operations['InterviewsController_create']['parameters'];

@@ -1,5 +1,6 @@
 import 'react-quill/dist/quill.snow.css';
 
+import { Box } from '@mui/material';
 import { useCallback } from 'react';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill';
@@ -32,13 +33,15 @@ const ReachEditor = <FormType extends FieldValues>({
   }, []);
 
   return (
-    <ReactQuill
-      ref={formRef}
-      theme="snow"
-      modules={item?.modules || modules}
-      value={getValue}
-      onChange={handleChange}
-    />
+    <Box>
+      <ReactQuill
+        ref={formRef}
+        theme="snow"
+        modules={item?.modules || modules}
+        value={getValue}
+        onChange={handleChange}
+      />
+    </Box>
   );
 };
 

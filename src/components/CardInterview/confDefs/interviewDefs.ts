@@ -2,6 +2,7 @@ import { FormItem } from '@components/castomForm/GetEditor/type';
 
 export const interviewDefs: FormItem<any>[] = [
   { id: 'companyName', header: 'Компания', type: 'text' },
+  { id: 'linkjob', header: 'Ссылка на объявление', type: 'link' },
   {
     id: 'stage',
     header: 'Этап ревью',
@@ -48,6 +49,17 @@ export const interviewDefs: FormItem<any>[] = [
       { value: 'junior', label: 'Начинающий специалист' },
       { value: 'middle', label: 'Опытный специалист' },
       { value: 'senior', label: 'Ведущий специалист' },
+    ],
+  },
+  {
+    id: 'formatjob',
+    header: 'Формат работы',
+    type: 'select',
+    isMulti: true,
+    options: [
+      { value: 'hybrid', label: 'Гибрид' },
+      { value: 'remote', label: 'Удаленный формат' },
+      { value: 'office', label: 'Офис' },
     ],
   },
   { id: 'articleTitle', header: 'Заголовок статьи', type: 'text' },
