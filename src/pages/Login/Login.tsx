@@ -51,7 +51,7 @@ const Login = () => {
       <Link to={REGISTRATION_PATH}>Регистрация</Link>
       <CastomForm>
         <CastomForm.Form onSubmitForm={handleSubmit}>
-          <Typography variant="h1">Авторизация</Typography>
+          <Typography variant="h1">Авторизацияz</Typography>
           <CastomForm.Items items={inputsDefs} />
           <Button type="submit" variant="contained" disabled={authMutation.isPending}>
             Войти
