@@ -62,5 +62,6 @@ const DENIED_PATH_GROUPS = [
       sourceType: 'module'
     },
     plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier', "simple-import-sort", "jest"],
+    "ignorePatterns": ["jest.config.js"],
   };
   

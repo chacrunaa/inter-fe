@@ -83,9 +83,13 @@ exports[`Тестирование CardInterviewItem снэпшот с отсут
               >
                 Заголовок статьи
               </h6>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-              />
+              <div
+                class="ql-snow MuiBox-root css-79h8s0"
+              >
+                <div
+                  class="ql-editor MuiBox-root css-0"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -190,9 +194,13 @@ exports[`Тестирование CardInterviewItem снэпшот с отсут
             >
               Заголовок статьи
             </h6>
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-            />
+            <div
+              class="ql-snow MuiBox-root css-79h8s0"
+            >
+              <div
+                class="ql-editor MuiBox-root css-0"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -354,9 +362,13 @@ exports[`Тестирование CardInterviewItem снэпшот с полны
               >
                 Заголовок статьи
               </h6>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-              />
+              <div
+                class="ql-snow MuiBox-root css-79h8s0"
+              >
+                <div
+                  class="ql-editor MuiBox-root css-0"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -461,9 +473,13 @@ exports[`Тестирование CardInterviewItem снэпшот с полны
             >
               Заголовок статьи
             </h6>
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
-            />
+            <div
+              class="ql-snow MuiBox-root css-79h8s0"
+            >
+              <div
+                class="ql-editor MuiBox-root css-0"
+              />
+            </div>
           </div>
         </div>
       </div>

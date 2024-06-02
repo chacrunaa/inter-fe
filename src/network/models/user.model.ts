@@ -12,3 +12,5 @@ export type AuthParams =
 
 export type RegistrationParams =
   operations['AuthController_registration']['requestBody']['content']['application/json'];
+
+export type VideoUploadData = operations['FilesController_uploadFiles']['requestBody'];

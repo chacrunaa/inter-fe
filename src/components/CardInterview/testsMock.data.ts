@@ -1,7 +1,7 @@
 import { Props } from '@components/CardInterview/CardInterviewItem/CardInterviewItem';
 
 export const fakeInterviewItem: Props = {
-  id: 78231,
+  id: '78231',
   companyName: 'Газпром',
   //@ts-ignore Требуется правка типа полей со стороны бэка
   status: ['processing'],

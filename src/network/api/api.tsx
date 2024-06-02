@@ -11,7 +11,7 @@ export const getList = async <T extends keyof AllEntityesParamsDto>(
 
 export const postItem = async <T extends keyof AllEntityesParamsDto>(
   url: T,
-  params?: AllEntityesParamsDto[T],
+  params?: AllEntityesParamsDto[T] | FormData,
   token?: string,
 ) => {
   const config = token ? { headers: { Authorization: `Bearer ${token}` } } : undefined;

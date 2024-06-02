@@ -1,7 +1,6 @@
+import { ControlledItemProps, TypeForm } from '@components/castomForm/GetEditor/type';
 import { FC, lazy, LazyExoticComponent } from 'react';
 import { FieldValues } from 'react-hook-form';
-
-import { ControlledItemProps, TypeForm } from './type';
 
 const controllerEditor: Record<
   TypeForm,
@@ -19,6 +18,9 @@ const controllerEditor: Record<
     () => import('@components/castomForm/GetEditor/Editors/ReachEditor/index'),
   ),
   link: lazy(() => import('@components/castomForm/GetEditor/Editors/Link/index')),
+  uploadButton: lazy(
+    () => import('@components/castomForm/GetEditor/Editors/UploadButton/index'),
+  ),
 };
 
 const GetEditor = <FormType extends FieldValues>(

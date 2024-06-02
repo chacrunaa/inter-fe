@@ -1,4 +1,4 @@
-import { SelectVariants, SliderOwnProps } from '@mui/material';
+import { ButtonProps, SelectVariants, SliderOwnProps } from '@mui/material';
 import { FieldValues, Path, PathValue } from 'react-hook-form';
 import { ReactQuillProps } from 'react-quill';
 
@@ -8,7 +8,8 @@ export type TypeForm =
   | 'select'
   | 'numberRange'
   | 'reachEditor'
-  | 'link';
+  | 'link'
+  | 'uploadButton';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
   type: TypeForm;
@@ -38,10 +39,23 @@ export type FormItemRichText<FormType extends FieldValues> = {
   modules?: ReactQuillProps['modules'];
 } & FormItemBase<FormType>;
 export type PermissionsType = 'read' | 'write';
+
+export type FormItemUploadButton<FormType extends FieldValues> = {
+  text?: string;
+  onChange?: (item: FileList) => void;
+  editorProps?: {
+    buttonProps?: ButtonProps;
+    uploadButtonProps?: ButtonProps;
+    resetButtonProps?: ButtonProps;
+  };
+} & FormItemBase<FormType>;
+
 export type FormItem<FormType extends FieldValues> = FormItemBase<FormType> &
   FormItemSelect<FormType> &
   FormItemNumberRange<FormType> &
-  FormItemRichText<FormType>;
+  FormItemRichText<FormType> &
+  FormItemUploadButton<FormType>;
+
 export type ControlledItemProps<FormType extends FieldValues> = {
   item: FormItem<FormType>;
   permissions: PermissionsType;
