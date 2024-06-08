@@ -1,6 +1,7 @@
 import QueryWrapper from '@components/QueryWrapper';
 import { SelectChangeEvent } from '@mui/material';
 import { getList } from '@network/api/api';
+import { useAuthStore } from '@stores/useGlobalStore';
 import { useIterwievStore } from '@stores/useIterwievStore/useIterwievStore';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
@@ -16,9 +17,11 @@ const CardInterview = () => {
   const setCurrentPage = useIterwievStore(s => s.setCurrentPage);
   const filter = useIterwievStore(s => s.filter);
   const setFilter = useIterwievStore(a => a.setFilter);
+  const token = useAuthStore(s => s.token);
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['interviews', currentPage, pageSize, filter],
-    queryFn: () => getList('interviews', { page: currentPage, pageSize, ...filter }),
+    queryKey: ['interviews', token, currentPage, pageSize, filter],
+    queryFn: () =>
+      getList('interviews', token, { page: currentPage, pageSize, ...filter }),
   });
 
   const interviews = data?.interviews;

@@ -2,11 +2,13 @@ import { FormItem } from '@components/castomForm/GetEditor/type';
 
 export const interviewDefs = ({
   mutationAfterChange,
+  urlMatches,
 }: {
   mutationAfterChange: (item: FileList) => void;
+  urlMatches: RegExp;
 }): FormItem<any>[] => [
   { id: 'companyName', header: 'Компания', type: 'text' },
-  { id: 'linkjob', header: 'Ссылка на объявление', type: 'link' },
+  { id: 'linkjob', header: 'Ссылка на объявление', type: 'text', urlMatches: urlMatches },
   {
     id: 'stage',
     header: 'Этап ревью',

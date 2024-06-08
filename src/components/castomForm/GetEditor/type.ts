@@ -22,6 +22,7 @@ export type FormItemBase<FormType extends FieldValues> = {
   editorProps?: FieldValues;
   disabled?: boolean;
   variant?: SelectVariants;
+  urlMatches?: RegExp;
 };
 export type FormItemSelect<FormType extends FieldValues> = {
   options?: { value: string; label: string }[];

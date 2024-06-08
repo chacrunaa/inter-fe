@@ -17,15 +17,16 @@ const CreateInterview = () => {
   const [articleId] = useState<string>(uuidv4());
   const { setFileUploadLoading, setFileError, setFileSucсess } = useIterwievStore();
   const token = useAuthStore(s => s.token);
-
+  const urlMatches =
+    /^(https:\/\/(hh\.ru\/vacancy\/\d+|career\.habr\.com\/vacancies\/\d+)(\?.*)?)?$/;
   const object = 'interviews';
   const authMutation = useMutation({
     mutationFn: (formData: AllEntityesParamsDto['interviews']) =>
-      postItem(object, formData, token),
+      postItem(object, token, formData),
   });
 
   const uploadVideoToLink = useMutation({
-    mutationFn: (formData: FormData) => postItem('files/upload', formData, token),
+    mutationFn: (formData: FormData) => postItem('files/upload', token, formData),
   });
 
   useEffect(() => {
@@ -74,6 +75,7 @@ const CreateInterview = () => {
             <CastomForm.Items
               items={interviewDefs({
                 mutationAfterChange,
+                urlMatches,
               })}
             />
           </Box>
