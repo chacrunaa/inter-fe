@@ -8,7 +8,6 @@ export type TypeForm =
   | 'select'
   | 'numberRange'
   | 'reachEditor'
-  | 'link'
   | 'uploadButton';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
