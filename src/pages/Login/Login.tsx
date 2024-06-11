@@ -1,6 +1,7 @@
 import CastomForm from '@components/castomForm';
+import Loading from '@components/Loading';
 import { REGISTRATION_PATH } from '@constatns/pathPage';
-import { Container, Typography } from '@mui/material';
+import { Alert, Box, Container, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { postAuth } from '@network/api/api';
 import { AllEntityesParamsDto } from '@network/types';
@@ -46,16 +47,34 @@ const Login = () => {
     return null;
   }
 
+  const getErrorMessage = (error: any) => {
+    if (error?.response?.data?.message) {
+      return (
+        'Ошибка авторизации. Пожалуйста, попробуйте снова.' + error.response.data.message
+      );
+    }
+    return 'Ошибка авторизации.';
+  };
+
   return (
     <Container>
       <Link to={REGISTRATION_PATH}>Регистрация</Link>
       <CastomForm>
         <CastomForm.Form onSubmitForm={handleSubmit}>
-          <Typography variant="h1">Авторизацияz</Typography>
+          <Typography variant="h1">Авторизация</Typography>
           <CastomForm.Items items={inputsDefs} />
-          <Button type="submit" variant="contained" disabled={authMutation.isPending}>
-            Войти
-          </Button>
+          {authMutation.isPending ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+              <Loading />
+            </Box>
+          ) : (
+            <Button type="submit" variant="contained" disabled={authMutation.isPending}>
+              Войти
+            </Button>
+          )}
+          {authMutation.isError && (
+            <Alert severity="error">{getErrorMessage(authMutation.error)}</Alert>
+          )}
         </CastomForm.Form>
       </CastomForm>
     </Container>

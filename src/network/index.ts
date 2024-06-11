@@ -1,14 +1,18 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { axiosBaseOptions } from './axiosSetup';
+import { authInterceptor, axiosBaseOptions } from './axiosSetup';
 
 class MyAxios {
   private readonly axiosInstance: AxiosInstance;
+
   constructor(options: AxiosRequestConfig) {
     this.axiosInstance = axios.create(options);
     this.initInterceptors();
   }
+
   private initInterceptors() {
+    authInterceptor(this.axiosInstance);
+
     this.axiosInstance.interceptors.response.use((response: any) => {
       const { data } = response;
 

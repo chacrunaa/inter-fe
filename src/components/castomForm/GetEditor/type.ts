@@ -8,7 +8,6 @@ export type TypeForm =
   | 'select'
   | 'numberRange'
   | 'reachEditor'
-  | 'link'
   | 'uploadButton';
 export type FormItemBase<FormType extends FieldValues> = {
   id: Path<FormType>;
@@ -22,6 +21,7 @@ export type FormItemBase<FormType extends FieldValues> = {
   editorProps?: FieldValues;
   disabled?: boolean;
   variant?: SelectVariants;
+  urlMatches?: RegExp;
 };
 export type FormItemSelect<FormType extends FieldValues> = {
   options?: { value: string; label: string }[];
